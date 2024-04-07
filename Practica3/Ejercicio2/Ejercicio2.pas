@@ -34,7 +34,7 @@ begin
             until empleados>0;
         end;
 
-    for i:=1 to empleados do //Ejecuta el prcedimiento para cada empleado
+    for i:=1 to empleados do //Ejecuta el procedimiento para cada empleado
         begin
             writeln('Ingrese el nombre del empleado ', i);
             readln(nombreEmpleado);
