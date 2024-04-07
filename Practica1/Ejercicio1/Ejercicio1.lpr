@@ -14,6 +14,7 @@ begin
      cantBlanco := ((cantNegro*4.5)/9.5);
      writeln('A usted le falta ' , cantBlanco:3:1 , 'L de pintura blanca');
      readln();
+      
      (*writeln('Ingrese la cantidad de pintura blanca que usted tiene: ');
      readln(cantBlanco);
      cantNegro := ((cantBlanco*9.5)/4.5);

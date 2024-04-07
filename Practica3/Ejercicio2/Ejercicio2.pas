@@ -16,12 +16,13 @@ const
     sueldoBasico = 15000;
 var
     empleados, i, aniosDeTrabajo: integer;
-    sueldo, sueldoPromedio, sueldoTotal, antiguedad: real; 
+    sueldo, mayorSueldo, sueldoPromedio, sueldoTotal, antiguedad: real; 
     nombreEmpleado, emplMayorSueldo: string[10];
 
 begin
     emplMayorSueldo := '';
     sueldoTotal:= 0;
+    mayorSueldo := 15000;
 
     writeln('Ingrese el numero de empleados');
     readln(empleados);
@@ -64,9 +65,12 @@ begin
         
             writeln('El empleado ', nombreEmpleado, ' tiene un sueldo de ', sueldo:5:2);
             
-            if sueldoBasico<sueldo then
-                emplMayorSueldo := nombreEmpleado;
-
+            if (mayorSueldo = 15000) or (sueldo > mayorSueldo) then
+                begin
+                    mayorSueldo := sueldo;
+                    emplMayorSueldo := nombreEmpleado;
+                end;
+                
             sueldoTotal := sueldoTotal + sueldo;
         end;
     writeln('El empleado con mayor sueldo es: ', emplMayorSueldo);

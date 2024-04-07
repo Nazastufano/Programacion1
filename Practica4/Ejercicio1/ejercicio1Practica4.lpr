@@ -1,5 +1,6 @@
 program ejercicio1Practica4;
-(*Ej 1) Desarrollar una función booleana que dado un caracter diga si es letra o no*)
+(*Ej 1) Desarrollar una función booleana que dado un 
+   caracter diga si es letra o no*)
 Function esLetra(caracter: char): boolean;
         begin
              caracter := upCase(caracter);

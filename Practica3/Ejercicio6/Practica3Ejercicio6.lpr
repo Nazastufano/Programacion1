@@ -38,9 +38,9 @@ begin
               writeln('Ingrese el monto que desea retirar');
               readln(retiro);
               if retiro>monto then
-                writeln('Monto en cuenta insuficiente')
+                  writeln('Monto en cuenta insuficiente')
               else
-                monto:= monto - retiro;
+                monto:= monto - retiro; (*VALIDAR MOVIMIENTOS*)
              end;
          'f': writeln('Operacion terminada');
          end;

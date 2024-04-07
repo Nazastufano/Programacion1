@@ -4,32 +4,30 @@ program ejercicio2Practica4;
           n! = 1 (si n=0)
           n! = n(n-1)! (si n>0) *)
 Function Factorial(n: integer): integer;
-         var
+        var
             i, res: integer;
 
-         begin
-           n := Abs(n);
-           res:= 1;
+            begin
+                n := Abs(n);
+                res:= 1;
 
-           if n = 0 then
-              Factorial := 1
-           else
-             begin
-               for i:=1 to n do
-                   begin
-                        res:= res*i;
-                   end;
-               Factorial := res
-             end;
-
-
-         end;
+                if n = 0 then
+                    Factorial := 1
+                else
+                    begin
+                        for i:=1 to n do
+                            begin
+                                res:= res*i;
+                            end;
+                Factorial := res
+                    end;
+            end;
 var
-   numero: integer;
+    numero: integer;
 begin
-  writeln('Ingrese un numero para factorizar');
-  readln(numero);
-  writeln('El factorial del numero es: ', Factorial(numero));
-  readln();
+    writeln('Ingrese un numero para factorizar');
+    readln(numero);
+    writeln('El factorial del numero es: ', Factorial(numero));
+    readln();
 end.
 
