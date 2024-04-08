@@ -1,4 +1,5 @@
-(*Ej 7) Se dispone de dos mazos de cartas españolas. Cada carta tiene los siguientes atributos:
+program Ejercicio6;
+    (*Ej 6) Se dispone de dos mazos de cartas españolas. Cada carta tiene los siguientes atributos:
 • Color del mazo (Rojo, Azul)
 • Palo (O,C,E,B)
 • Numero(1..12)
@@ -14,8 +15,6 @@ g) Dos cartas de distinto número en el mismo mazo y palo
 h) La primera carta mayor que la segunda (el mazo rojo tiene más peso que el azul, cuando coinciden
 en el mazo, el palo determina supremacía en el orden en que se describieron, por último define el
 número) *)
-
-program ejercicio6;
 
 var color,numero1, i, numero2: integer;
     palo, palo1, palo2: char;
