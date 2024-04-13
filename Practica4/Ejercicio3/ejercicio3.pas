@@ -1,4 +1,4 @@
-program ejercicio3Practica4;
+program Ejercicio3;
 
 (*Ej 3) Dado un número natural N, calcular
              y mostrar la suma de los N primeros números naturales. *)
@@ -29,8 +29,7 @@ begin
      else
           begin
                repeat
-                    writeln('Ingrese un numero positivo');
-                    writeln('Ingrese un numero para sumar');
+                    writeln('Ingrese un numero positivo para sumar');
                     readln(numero);
                until numero>0;
                writeln('La suma de los numeros es: ', Suma(numero));

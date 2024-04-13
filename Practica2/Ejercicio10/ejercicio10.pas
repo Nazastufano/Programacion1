@@ -1,4 +1,5 @@
 program Ejercicio10;
+
 (*Ej 10) Una empresa le brinda a sus clientes un servicio de
 cable con un costo básico de $1350 por mes, el
 paquete de películas se cobra $200 adicionales y el de deportes 
@@ -9,6 +10,7 @@ de $150 por mes. La promoción es que si se contrata ambos
 servicios (cable e internet), tiene unabonificación del 25% del
 total. Ingresar los datos de un cliente, calcular e informar
 cuánto debe pagar. *)
+
 const
     costoBasico = 1350;
     pPeliculas = 200;

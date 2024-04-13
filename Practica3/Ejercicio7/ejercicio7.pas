@@ -1,11 +1,6 @@
+Program Ejercicio7;
 
-Program Ejercicio7practica3;
-
-
-
-
-
-(*Dado un conjunto de alumnos, no se sabe cuántos son, de cada uno de ellos se conoce:
+(*Ej7) Dado un conjunto de alumnos, no se sabe cuántos son, de cada uno de ellos se conoce:
 - Nombre (‘***’ indica fin de datos)
 - Nota1, Nota2 y Nota3
 Ingresar la información e informar:
@@ -32,9 +27,10 @@ Begin
             notaTotal := 0;
             For i:=1 To 3 Do
                 Begin
-                    writeln('Ingrese nota ', i);
-(*VALIDAR NOTAS*)
-                    readln(nota);
+                    repeat
+                        writeln('Ingrese nota ', i); (*VALIDAR NOTAS*)
+                        readln(nota);   
+                    until (nota>=0.0) and (nota<=10.0); 
                     notaTotal := notaTotal + nota;
                 End;
             promedio := (notaTotal)/3;
@@ -48,11 +44,8 @@ Begin
                 writeln('Desaprobado');
 
             writeln('El promedio de ', nombre, ' es: ', promedio:5:2);
-
-
             writeln('Ingrese el nombre del alumno');
             readln(nombre);
-
         End;
 
     porcentajeAA := (contAA*100)/contAlumnos;

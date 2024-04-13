@@ -1,5 +1,6 @@
 program Ejercicio6;
-    (*Ej 6) Se dispone de dos mazos de cartas españolas. Cada carta tiene los siguientes atributos:
+
+(*Ej 6) Se dispone de dos mazos de cartas españolas. Cada carta tiene los siguientes atributos:
 • Color del mazo (Rojo, Azul)
 • Palo (O,C,E,B)
 • Numero(1..12)

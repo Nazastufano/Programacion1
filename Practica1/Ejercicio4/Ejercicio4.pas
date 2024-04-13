@@ -1,11 +1,13 @@
 program Ejercicio4;
-   (*Ej 4) Dado un terreno de 10 x 30 se quiere embaldosar una superficie de N x M. Calcular e informar:
+
+(*Ej 4) Dado un terreno de 10 x 30 se quiere embaldosar una superficie de N x M. Calcular e informar:
 a) Qué superficie representa del total del terreno.
 b) Si cada baldosa es de 0.25 x 0.25. ¿Cuántas se deben comprar para hacer el trabajo?*)
    
 const
    supTerr= 300;
    bald = 0.25*0.25;
+   
 var
    n, m, sup, supEmb, totalBaldosas: real;
 

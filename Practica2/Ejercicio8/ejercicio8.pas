@@ -1,4 +1,5 @@
 program Ejercicio8;
+
 (* Ej 8) Un club cobra a sus socios una cuota básica por mes que
 incluye dos deportes, su costo depende de la edad del socio:
  Si es mayor de 18: $1800

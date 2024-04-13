@@ -1,4 +1,5 @@
 program Ejercicio9;
+
 (*Ej 9) A un vendedor le pagan un sueldo básico de $8000 por mes
 más una comisión del 5% de las ventas;
 si superó en ventas un monto X (dato ingresado por teclado)
@@ -8,6 +9,7 @@ Si faltó más de 2 días se le descuenta un 7% del total.
 Definir los datos a ingresar. Calcular e informar lo que debe 
 cobrar el vendedor. 
 *)
+
 const 
     sueldoBasico = 8000;
     comision = 0.05;
@@ -15,9 +17,11 @@ const
     comision3 = 0.02;
     presentismo = 1000;
     descuento = 0.07;
+
 var
     montoASuperar, ausencia, ventasRealizadas: integer;
     sueldoTotal: real;
+
 begin
     repeat
         writeln('Ingrese el monto a superar: ');
@@ -47,7 +51,7 @@ begin
     
     if ausencia = 0 then
         if ventasRealizadas*sueldoBasico*comision > presentismo then
-             sueldoTotal := sueldoTotal + ventasRealizadas*sueldoBasico*comision3
+            sueldoTotal := sueldoTotal + ventasRealizadas*sueldoBasico*comision3
         else
             sueldoTotal := sueldoTotal + presentismo
     else

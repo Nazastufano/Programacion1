@@ -1,6 +1,6 @@
 program Ejercicio1;
-     
-     (*Ej 1)En una pinturería informan que para obtener el color “gris mara” se debe mezclar 9.5 litros de Negro
+
+(*Ej 1) En una pinturería informan que para obtener el color “gris mara” se debe mezclar 9.5 litros de Negro
 y 4.5 litros de Blanco. Se quiere asesorar a un cliente con las cantidades que necesita mezclar para
 obtener el color si:
 a) Tiene N litros de pintura Blanca. ¿Cuánto debe comprar de pintura Negra? .

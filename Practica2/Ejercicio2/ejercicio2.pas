@@ -1,5 +1,6 @@
 program Ejercicio2;
-    (*Ej 2) Sean las siguientes estructuras selectivas, reescribirlas de 
+
+(*Ej 2) Sean las siguientes estructuras selectivas, reescribirlas de 
     tal forma que realicen lo mismo, pero con condicionales simples.
 
 If a and b then

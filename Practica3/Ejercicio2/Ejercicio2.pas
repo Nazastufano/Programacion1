@@ -1,6 +1,6 @@
 program Ejercicio2;
 
-(*Se debe liquidar el sueldo de N empleados, de ellos se sabe el nombre y la antigüedad en años.
+(*Ej 2) Se debe liquidar el sueldo de N empleados, de ellos se sabe el nombre y la antigüedad en años.
 Todos parten de un básico de $15000 y la antigüedad se calcula según la siguiente tabla:
 - Hasta 5 años …………. 5%
 - De 6 a 10 años……….. 8%

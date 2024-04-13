@@ -1,4 +1,5 @@
 program Ejercicio7;
+
     (*Ej 7) Un negocio vende camisas, éstas pueden ser de hombre 
     o de mujer. Los talles que fabrican son: S,
 M, L y X. El precio base unitario es de $1000 para hombres y 
@@ -9,11 +10,13 @@ la compra supera la docena se considera venta mayorista
 y obtiene un descuento extra del 7% del total.
 Determinar cuáles son los datos necesarios para calcular 
 el importe a facturar en una venta. *)
+
 const
     precioBaseH = 1000;
     precioBaseM = 1200;
     iva = 0.21;
 var
+
     respuesta, genero, talle: char;
     contCompra: integer;
     totalAPagar: real;

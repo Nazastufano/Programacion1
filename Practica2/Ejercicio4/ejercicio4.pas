@@ -1,5 +1,6 @@
 program Ejercicio4;
-    (*Ej 4) Dadas dos fechas (dia, mes y año) indicar cuál
+
+(*Ej 4) Dadas dos fechas (dia, mes y año) indicar cuál
     es la más antigua y a qué trimestre pertenece. *)
 
 var

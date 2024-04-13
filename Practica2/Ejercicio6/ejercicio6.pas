@@ -1,11 +1,13 @@
 program Ejercicio6;
 
-(*dadas tres letras mostrarlas ordenadas en forma ascendente. Plantear tres soluciones:
+(*Ej 6) Dadas tres letras mostrarlas ordenadas en forma ascendente. Plantear tres soluciones:
 a) Alternativas secuenciales
 b) Alternativas anidadas con expresiones lógicas compuestas
 c) Alternativas anidadas con expresiones lógicas simples*)
+
 var
      letra1, letra2, letra3, completo: string;
+     
 begin
      writeln('Ingrese la primer letra: ');
      readln(letra1);

@@ -1,8 +1,7 @@
+Program Ejercicio8;
 (*Ej 8) Dado el siguiente programa Pascal indicar qué realiza y cuál es la salida, para ello grabar en un
 archivo de texto, un número por línea y luego ejecutar el programa.*)
 
-
-Program Ejercicio8practica3;
 (*Lote de prueba: 3, -5, 8, 12, -9, 1, -6, 7, -13*)
 
 //Uses unit1;

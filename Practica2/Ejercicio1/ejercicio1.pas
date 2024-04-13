@@ -1,5 +1,6 @@
 program Ejercicio1;
-    (*Ej 1) Informar si un caracter ingresado es letra minúscula,
+
+(*Ej 1) Informar si un caracter ingresado es letra minúscula,
 mayúscula u otro cualquiera.*)
 
 var
