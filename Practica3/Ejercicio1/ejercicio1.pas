@@ -26,7 +26,7 @@ begin
 
     for i := 1 to cant do
         begin
-            writeln('Ingrese el numero: ', i);
+            writeln('Ingrese el numero de la posicion: ', i);
             readln(num);
 
             if (num > max) and (max <> num) then
