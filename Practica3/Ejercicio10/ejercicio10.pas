@@ -17,24 +17,24 @@ var
 begin
     assign(arch, 'datos.TXT');
     reset(arch);
-    readln(arch, ant);
+    read(arch, ant);
     repeticiones := 1;
 
     writeln('Numero - Frecuencia');
 
-    while NOT eof (arch) do
+    while NOT eoln (arch) do
         begin
-            readln(arch, numero);
+            read(arch, numero);
 
             if (numero = ant) then
                 repeticiones := repeticiones + 1;
             
-            if (numero <> ant) or (eof(arch)) then
+            if (numero <> ant) or (eoln(arch)) then
                 begin
                     writeln(ant, ' - ', repeticiones);
                     repeticiones := 1;
                 end;
-            ant := numero;   
+            ant := numero; 
         end;
     close(arch);
     readln();

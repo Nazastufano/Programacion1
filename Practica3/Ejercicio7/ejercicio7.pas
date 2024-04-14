@@ -28,7 +28,7 @@ Begin
             For i:=1 To 3 Do
                 Begin
                     repeat
-                        writeln('Ingrese nota ', i); (*VALIDAR NOTAS*)
+                        writeln('Ingrese nota ', i); 
                         readln(nota);   
                     until (nota>=0.0) and (nota<=10.0); 
                     notaTotal := notaTotal + nota;

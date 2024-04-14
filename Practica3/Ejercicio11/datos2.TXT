@@ -1,0 +1,8 @@
+Rodrigo
+7 8 9
+Lucas
+4 10 6
+Ana
+10 8 9
+Romina
+4 3 4
