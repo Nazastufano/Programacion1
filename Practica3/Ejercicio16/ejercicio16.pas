@@ -23,11 +23,13 @@ begin
     readln(arch, n);
     masViajes := 0;
     minCantKm := 30000;
+
     for i := 1 to n do
         begin
             nViajes := 0;
             contKilometros := 0;
             read(arch, patente, litros);
+            
             repeat
                 readln(arch, kilometros);
                 contKilometros := kilometros + contKilometros;
@@ -47,10 +49,9 @@ begin
                     minCantKm := contKilometros;
                     menCantLitros := litros;    
                 end; 
-
             cantLitros := litros/contKilometros;
             writeln('El vehiculo: ',i, ' consumio ', cantLitros:0:2, 'L/Km');
-        end;    
+        end;
     writeln('El vehiculo que mas km recorrio tiene la patente: ', patenteMasViajes);
     writeln('Los litros del vehiculo que menos km recorrio son: ', menCantLitros);
 end.
