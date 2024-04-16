@@ -8,44 +8,47 @@ Ejemplo:
     2 3 4 -7 4 5 -5 7 5 3 9 8 7 -1 3 1 -2 -> 5 9 3
     2 3 4 -7 4 5 -5 7 5 3 9 8 7 -1 3 1 -> 5 9 *)
 
+uses
+    SysUtils;
+
 var
     arch: text;
     cadenaMax: string;
-    numero, numeroMax: char;
+    numeroMax, numero: integer;
 
 begin
     assign(arch, 'datos.TXT');
     reset(arch);
 
     cadenaMax := '';
-    numeroMax := ' ';
+    numeroMax := 0;
+
     repeat
         read(arch, numero);
-    until (numero= '-');
-    
-    read(arch, numero);
-    read(arch, numero);
+    until (numero < 0);
     
     while (not eoln(arch)) do
         begin
-            if numero = '-' then
+            if numero < 0 then
+                read(arch, numero);
+
+            while (numero >= 0) and (not eoln(arch))do   
                 begin
+                    if numeroMax < numero then
+                        numeroMax := numero;
                     read(arch, numero);
-                    read(arch, numero);
-                    cadenaMax := cadenaMax + ' ' + numeroMax;
-                    numeroMax := ' ';
-                end
-            else
-                begin
-                    if numeroMax<numero then
-                        numeroMax:= numero    
                 end;
-                
-            
+
+            if numero < 0 then
+                begin
+                    cadenaMax := cadenaMax + ' ' + IntToStr(numeroMax);
+                    numeroMax := 0;
+                end;
+        
             read(arch, numero);
         end;
-    writeln(cadenaMax);
     close(arch);
+    writeln(cadenaMax);
 end.
 
 // Busca cadena de caracteres mas larga entre 2 negativos
