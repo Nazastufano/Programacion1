@@ -50,20 +50,3 @@ begin
     close(arch);
     writeln(cadenaMax);
 end.
-
-// Busca cadena de caracteres mas larga entre 2 negativos
-(*while (not eoln(arch)) do
-        begin
-            if numero <> '-' then
-                cadena := cadena + numero
-            else
-                begin
-                    if cadenaMax<cadena then
-                        cadenaMax := cadena;
-                                  
-                    cadena := '';
-                    read(arch, numero);
-                    read(arch, numero);        
-                end;
-            read(arch, numero);
-        end;*)

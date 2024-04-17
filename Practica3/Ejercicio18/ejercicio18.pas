@@ -43,7 +43,7 @@ begin
                 read(arch, precio, aux, descuento); 
             until (precio = 0);
 
-            if mayCantArtOferta<contArticulosOferta then
+            if mayCantArtOferta < contArticulosOferta then
                 begin
                     mayCantArtOferta := contArticulosOferta;
                     nombreMayCantArtOfer := cliente;
@@ -66,7 +66,8 @@ begin
 
                     read(arch, cliente);
                 end;
-        end;    
+        end; 
+    close(arch);
     writeln('El cliente que mas articulos en oferta compro es: ', nombreMayCantArtOfer);
     writeln('La cantidad de clientes que compraron unicamente en oferta son: ', contCliSoloOfer);
 end.

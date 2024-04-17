@@ -10,7 +10,6 @@ Function Factorial(n: integer): integer;
         i, res: integer;
 
     begin
-        n := Abs(n);
         res:= 1;
 
         if n = 0 then
@@ -29,8 +28,11 @@ var
     numero: integer;
     
 begin
-    writeln('Ingrese un numero para factorizar');
-    readln(numero);
+    repeat
+        writeln('Ingrese un numero para factorizar');
+        readln(numero);    
+    until (numero>=0);
+    
     writeln('El factorial del numero es: ', Factorial(numero));
     readln();
 end.
