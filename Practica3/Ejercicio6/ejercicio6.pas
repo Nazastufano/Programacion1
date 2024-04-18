@@ -21,11 +21,9 @@ begin
     while movimiento <> 'F' do
         begin
             Repeat
-                begin
-                    writeln('ingrese movimiento: (d=depósito, r=retiro ó f= fin de datos)');
-                    readln(movimiento);
-                    movimiento := UpCase(movimiento);
-                end;
+                writeln('ingrese movimiento: (d=depósito, r=retiro ó f= fin de datos)');
+                readln(movimiento);
+                movimiento := UpCase(movimiento);
             until (movimiento='D') or (movimiento='R') or (movimiento='F') ;
 
             case movimiento of
@@ -34,9 +32,9 @@ begin
                         repeat
                             writeln('Ingrese el monto que desea depositar');
                             readln(deposito);
-                        until deposito>0;
+                        until (deposito>0);
 
-                        monto:= monto + deposito;
+                        monto := monto + deposito;
                     end;
                 'R':
                     begin
@@ -48,7 +46,7 @@ begin
                         if retiro>monto then
                             writeln('Monto en cuenta insuficiente')
                         else
-                            monto:= monto - retiro; (*VALIDAR MOVIMIENTOS*)
+                            monto := monto - retiro;
                     end;
                 'F': writeln('Operacion terminada');
             end;
