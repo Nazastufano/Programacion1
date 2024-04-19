@@ -120,12 +120,15 @@ begin
     
     writeln('El tambo que mas leche le dio a la compania es: ', codMasLeche);
     writeln('La cantidad de tambos que superaron los ', litrosASuperar, ' son: ', contSuperoLitros, ' tambo/s');
+    
     writeln('Ingrese un tambo a buscar: ');
     readln(cod);
 
     for i := 0 to length(ACod)-2  do
-        if cod = ACod[i] then
-            begin
-                writeln('El tambo: ', ACod[i], ' tiene un total de ', ATot[i], ' Litros entregados y un promedio de ', (ATot[i]/AEntregas[i]):0:2, ' litros por dia');
-            end;
+        begin
+            if cod = ACod[i] then
+                begin
+                    writeln('El tambo: ', ACod[i], ' tiene un total de ', ATot[i], ' Litros entregados y un promedio de ', (ATot[i]/AEntregas[i]):0:2, ' litros por dia');
+                end;    
+        end;
 end.
