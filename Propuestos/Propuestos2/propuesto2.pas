@@ -52,8 +52,9 @@ var
     ACod: VTSt;
     ATot, AEntregas: VTInt;
     cod,codMasLeche:ST4;
-    i, litros,masLeche, litrosASuperar,contSuperoLitros: integer;
+    i, dias,litros,masLeche, litrosASuperar,contSuperoLitros: integer;
     primeraVuelta:boolean;
+
 begin
     assign(arch, 'TAMBOS.TXT');
     reset(arch);
