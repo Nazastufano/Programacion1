@@ -91,7 +91,8 @@ begin
                             AEntregas[i-1] := AEntregas[i-1] + 1;
                             break;
                         end;       
-                end; 
+                end;
+
             if (i = length(ACod)) and (not eof(arch)) then
                 begin
                     SetLength(ACod, length(ACod) + 1);
@@ -101,23 +102,20 @@ begin
                     ATot[i-1] := ATot[i-1] + litros;
                     AEntregas[i-1] := AEntregas[i-1] + 1;
                 end;
-
-
         end;
     close(arch);
     
     for i := 0 to length(ACod)-2 do
-    begin
-        if masLeche<ATot[i] then
-            begin
-                masLeche:= ATot[i];
-                codMasLeche:= ACod[i];
-            end;
-        if litrosASuperar<ATot[i] then
+        begin
+            if masLeche<ATot[i] then
+                begin
+                    masLeche:= ATot[i];
+                    codMasLeche:= ACod[i];
+                end;
+            if litrosASuperar<ATot[i] then
                 contSuperoLitros := contSuperoLitros +1;
-    end;
+        end;
 
-    
     writeln('El tambo que mas leche le dio a la compania es: ', codMasLeche);
     writeln('La cantidad de tambos que superaron los ', litrosASuperar, ' son: ', contSuperoLitros, ' tambo/s');
     

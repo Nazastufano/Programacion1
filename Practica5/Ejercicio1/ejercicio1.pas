@@ -24,7 +24,7 @@ procedure LlenarArreglo(var A: TVecI);
     begin
         for i := 0 to N - 1 do
             begin
-                writeln('Escriba el valor ', (i+1) , ' para el arrglo: ');
+                writeln('Escriba el valor ', (i+1) , ' para el arreglo: ');
                 readln(valor);
                 A[i] := valor;
             end;
@@ -103,7 +103,7 @@ procedure LlenarOtroArreglo(var A, B: TVecI);
 
 begin
     repeat
-        writeln('Ingrese el tamaño del arreglo: ');
+        writeln('Ingrese el largo del arreglo: ');
         readln(N);        
     until (N>0);
 
@@ -113,7 +113,7 @@ begin
     LlenarArreglo(arreglo1);
     repeat    
         repeat
-            writeln('Que opcion desea llevarle a cabo al array? (1 = sumar sus valores, 2 = Mostrar las posiciones pares, 3 = llenar otro array con las posiciones invertidas y mostrar sus posiciones pares, 4 = mostrar el valor minimo del array, 5 = mostrar el valor maximo del array, 6 = salir)');
+            writeln('Que opcion desea llevar a cabo? (1 = Sumar sus valores, 2 = Mostrar las posiciones pares, 3 = Invertir el array y mostrar sus posiciones pares, 4 = Mostrar el valor minimo del array, 5 = Mostrar el valor maximo del array, 6 = Salir)');
             readln(resp)            
         until (resp in [1..6]);
 
