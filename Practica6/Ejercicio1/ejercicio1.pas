@@ -14,7 +14,7 @@ var
     arch: text;
     n, m: integer;
     matr: TM;    
-    vec:TV;
+    vecMaximos, vecImpares:TV;
 
 procedure RellenarMatriz(matr: TM); //Rellena la matriz con 0
     var
@@ -49,7 +49,7 @@ procedure ArregloMaximo(var vec:TV; var matr:TM); //Revisa la matriz y busca los
     var
         valorMax, valor, i, j:integer;
     begin
-        setLength(vec, m);
+        setLength(vec, n);
         for i := 0 to n-1 do
             begin
                 valorMax:= matr[i,1];
@@ -87,11 +87,64 @@ procedure CrearMatriz(var arch:text; var matr:TM); //Ingresa desde el archivo lo
             end;
     end;
 
+procedure ArregloImpares(var vec:TV; var matr:TM);
+    var
+        i, j:integer;
+        impar:boolean;
+    begin
+        setLength(vec, 1);
+        for j := 0 to m-1 do
+            begin
+                impar:= false;
+                for i := 0 to n-1 do
+                    begin
+                        if ((matr[i,j] mod 2) <> 0) then
+                            begin 
+                                vec[j] := vec[j] + matr[i,j];
+                                impar:= true;
+                            end;
+
+                    end;
+                if (impar = true) then
+                    setLength(vec, Length(vec)+1);
+            end;
+        setLength(vec, Length(vec)-1);
+        MostrarArreglo(vec);
+    end;
+
+procedure PedirColumna(matr:TM);
+    var
+        i,val, total:integer;
+        promedio:real;
+    begin
+        total:= 0;
+        promedio:= 0;
+        
+        writeln();
+        repeat
+            writeln('Ingrese la columna');
+            readln(val);    
+        until (val>=0) and (val<=m);
+        
+        
+        for i := 0 to n-1 do
+            begin
+                total := total + matr[i, val];
+            end;
+        
+        promedio:=total/m;
+        writeln('El promedio de la matriz ingresada desde teclado es: ', promedio:0:2);
+    end;
+
 begin
     CrearMatriz(arch, matr);
     //a)
-    ArregloMaximo(vec,matr);
-   
+    ArregloMaximo(vecMaximos,matr);
+    //b)
+    ArregloImpares(vecImpares,matr);
+    //c)
+    PedirColumna(matr);
+    
     
     (*
     writeln(Length(matr));    
