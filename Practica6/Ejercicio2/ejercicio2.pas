@@ -10,11 +10,62 @@ b) Por cada alumno determinar su situación:
 y generar un arreglo con los nombres de aquellos que promocionaron. *)
 
 type
-    TV =
-
+    ST10 = string[10];
+    TV = array of ST10;
+    TM = array of array of integer;
 var
     arch:text;
+    matr:TM;
+    vec:TV;
+
+procedure RellenarMatriz(matr: TM); //Rellena la matriz con 0
+    var
+        i,j:integer;
+    begin
+        for i := 0 to matr[] do
+            begin
+                for j := 0 to m-1 do
+                    matr[i,j] := 0;
+            end;
+    end;
+procedure GenerarMatriz(var arch:text; var vec:TV; var matr:TM);
+    var
+        nombre:ST10;
+        nota, contAlumnos, contParciales:integer;
+    begin
+        assign(arch, 'datos.TXT');
+        reset(arch);
+        
+        readln(arch, nombre);
+        setLength(vec, 1);
+        vec[0]:= nombre;
+        writeln(vec[0]);
+        
+        while not eof(arch) do
+            begin
+                read(arch, nota);
+                        
+                writeln(nota);
+                while not eoln(arch) do
+                    begin
+                        setLength(matr, 1, length(matr[1])+1);
+                        read(arch, nota);
+                        matr[1,1]:= nota;
+                        writeln(matr[1,1]);
+                    end;
+                read(arch);
+                readln(arch, nombre);
+                if not eof(arch) then
+                    begin
+                        setLength(vec, length(vec)+1);
+                        vec[length(vec)-1]:= nombre;
+                    end;
+                    
+            end;
+        
+    end;
+
 begin
-    assign(arch, 'datos.TXT');
-    reset(arch);
+    GenerarMatriz(arch, vec, matr);
+
 end.
