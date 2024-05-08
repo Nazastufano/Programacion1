@@ -85,6 +85,7 @@ procedure CrearMatriz(var arch:text; var matr:TM); //Ingresa desde el archivo lo
                         matr[i,j] := val;
                     end;
             end;
+        close(arch);
     end;
 
 procedure ArregloImpares(var vec:TV; var matr:TM);
@@ -133,7 +134,7 @@ procedure PedirColumna(matr:TM);
             end;
         
         promedio:=total/m;
-        writeln('El promedio de la matriz ingresada desde teclado es: ', promedio:0:2);
+        writeln('El promedio de la columna ingresada desde teclado es: ', promedio:0:2);
     end;
 
 begin
