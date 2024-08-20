@@ -48,7 +48,7 @@ begin
         else
             writeln('La fecha 2 es más antigua');
 
-    if mes1<mes2 then
+    if (mes1<mes2) then
         mes:= mes1
     else 
         mes:= mes2;
