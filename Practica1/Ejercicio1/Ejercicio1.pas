@@ -10,6 +10,7 @@ var
      cantBlanco, cantNegro: real;
 
 begin 
+     //a)
      writeln('Ingrese la cantidad de pintura negra que usted tiene: ');
      readln(cantNegro);
      
@@ -17,7 +18,8 @@ begin
      
      writeln('A usted le falta ' , cantBlanco:3:1 , 'L de pintura blanca');
      readln();
-      
+     
+     //b)
      (*writeln('Ingrese la cantidad de pintura blanca que usted tiene: ');
      readln(cantBlanco);
      

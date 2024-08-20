@@ -18,10 +18,10 @@ begin
     read(cantHoras);
 
     sueldoBrut := cantHoras*valHora;
-    sueldoNet := sueldoBrut + (sueldoBrut*descPrev) + (sueldoBrut*descCM);
+    sueldoNet := sueldoBrut*(1+descPrev+descCM);
 
-    writeln('El sueldo bruto es: ', sueldoBrut:10:2);
-    writeln('El sueldo neto es: ', sueldoNet:10:2);
+    writeln('El sueldo bruto es: ', sueldoBrut:0:2);
+    writeln('El sueldo neto es: ', sueldoNet:0:2);
     readln();
 end.
 
