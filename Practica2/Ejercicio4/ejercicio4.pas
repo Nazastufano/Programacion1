@@ -4,8 +4,8 @@ program Ejercicio4;
     es la más antigua y a qué trimestre pertenece. *)
 
 var
-    mes, dia1, dia2, mes1, mes2, anio1, anio2: integer;
-    
+    anio1, anio2: word;
+    mes, dia1, dia2, mes1, mes2: byte;
 begin
 
     repeat
@@ -28,31 +28,27 @@ begin
     readln(anio2);
 
 
-    if anio1 = anio2 then 
-        if mes1 = mes2 then
-            if dia1 = dia2 then
-                writeln('Las fechas son iguales')
-            else
-                if dia1 < dia2 then
-                    writeln('La fecha 1 es más antigua')
-                else
-                    writeln('La fecha 2 es más antigua')
-        else
-            if mes1<mes2 then
-                writeln('La fecha 1 es más antigua')
-            else
-                writeln('La fecha 2 es más antigua')
-    else
-        if anio1 < anio2 then
-            writeln('La fecha 1 es mas antigua')
-        else
-            writeln('La fecha 2 es más antigua');
+    if ((anio1=anio2) and (mes1=mes2) and (dia1=dia2)) then
+        Begin
+            writeln('Las fechas son iguales');
+            mes := mes1;
+        End
+    else        
+        begin
+            if (anio1<anio2) or ((anio1=anio2) and (mes1<mes2)) or ((anio1=anio2) and (mes1=mes2) and (dia1<dia2)) then
+                begin
+                    Begin
+                        writeln('La fecha 1 es mas antigua');
+                        mes := mes1;
+                    End
+                end
+            else            
+                Begin
+                    writeln('La fecha 2 es mas antigua');
+                    mes := mes2;
+                End
+        end;
 
-    if (mes1<mes2) then
-        mes:= mes1
-    else 
-        mes:= mes2;
-        
     case mes of
         1..3: writeln('Pertenece al primer trimestre');
         4..6: writeln('Pertenece al segundo trimestre');
