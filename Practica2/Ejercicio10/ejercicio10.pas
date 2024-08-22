@@ -7,7 +7,7 @@ $270. Aparte ofrece internet por $800 con
 6MB, si se desea 10MB y WIFI cuesta 20% más. La opción de grabar
 programas tiene un costo adicional
 de $150 por mes. La promoción es que si se contrata ambos
-servicios (cable e internet), tiene unabonificación del 25% del
+servicios (cable e internet), tiene una bonificación del 25% del
 total. Ingresar los datos de un cliente, calcular e informar
 cuánto debe pagar. *)
 
@@ -16,7 +16,7 @@ const
     pPeliculas = 200;
     pDeportes = 270;
     internet1 = 800;
-    internet2 = internet1 + internet1*0.20;
+    internet2 = internet1*(1 + 0.20);
     grabarProgramas = 150;
 var
     internet, cable, grabar, respuestaPeli, respuestaDeportes, respuestaWifi: char;
@@ -97,7 +97,7 @@ begin
         totalAPagar := totalAPagar + grabarProgramas;
     
     if (cable = 'S') and (internet = 'S') then
-        totalAPagar := totalAPagar - totalAPagar*0.25;
+        totalAPagar := totalAPagar*(1-0.25);
     writeln('El total a pagar es: ', totalAPagar:5:2);
     readln();
 end.

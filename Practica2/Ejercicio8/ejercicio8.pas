@@ -13,19 +13,19 @@ Determinar los datos a ingresar, para calcular e informar cuánto
 paga un socio.
 *)
 
+const
+    recargo = 0.05;
+
 var
-    respuesta, precio, tiempo, edad: integer;
-    totalAPagar: real;
+    dias: word;
+    edad, respuesta: byte;
+    precio, totalAPagar: real;
     respuestaP: char;
     
 begin
     
-    repeat
-        writeln('Ingrese la edad del socio');
-        readln(edad);
-        if edad < 0 then
-            writeln('Por favor, ingresa una edad valida');
-    until edad >= 0;
+    writeln('Ingrese la edad del socio');
+    readln(edad);
 
     case edad of
         0..4: precio := 0;
@@ -42,7 +42,7 @@ begin
     totalAPagar := precio + totalAPagar + 250*respuesta;
 
     repeat
-        writeln('La pileta escuela está disponible, desea incluirla?');
+        writeln('La pileta escuela está disponible, desea incluirla? S/N');
         readln(respuestaP);
         respuestaP := UpCase(respuestaP);
     until (respuestaP = 'S') or (respuestaP = 'N');
@@ -52,11 +52,11 @@ begin
     
     repeat
         writeln('Hace cuantos dias usted no paga la cuota?');
-        readln(tiempo);
-    until (tiempo>0);
+        readln(dias);
+    until (dias>0);
 
-    if tiempo > 15 then
-        totalAPagar := totalAPagar + totalAPagar*0.05;
-    writeln('El total a pagar es: ', totalAPagar:0:2);
+    if dias > 15 then
+        totalAPagar := totalAPagar*(1 + recargo);
+    writeln('El total a pagar es: $', totalAPagar:0:2);
     readln();
 end.

@@ -19,32 +19,22 @@ const
     descuento = 0.07;
 
 var
-    montoASuperar, ausencia, ventasRealizadas: integer;
-    sueldoTotal: real;
+    ventasRealizadas: word;
+    ausencia:byte;
+    montoASuperar, sueldoTotal: real;
 
 begin
-    repeat
-        writeln('Ingrese el monto a superar: ');
-        readln(montoASuperar); 
-        if montoASuperar < 0 then
-            writeln('Por favor, ingrese un monto valido');  
-    until (montoASuperar>0);
+    
+    writeln('Ingrese el monto a superar: ');
+    readln(montoASuperar);
 
-    repeat
-        writeln('Cuantas ventas hizo el vendedor: ');
-        readln(ventasRealizadas); 
-        if ventasRealizadas < 0 then
-            writeln('Por favor, ingrese un numero valido');  
-    until (ventasRealizadas>0);
+    writeln('Cuantas ventas hizo el vendedor: ');
+    readln(ventasRealizadas);
     
-    repeat
-        writeln('Dias de ausencia: ');
-        readln(ausencia);
-        if ausencia < 0 then
-            writeln('Por favor, ingrese un numero valido'); 
-    until (ausencia>=0);
-    
-    sueldoTotal := sueldoBasico + ventasRealizadas*sueldoBasico*comision;
+    writeln('Dias de ausencia: ');
+    readln(ausencia);
+
+    sueldoTotal := sueldoBasico*(1 + ventasRealizadas*comision);
     
     if sueldoTotal>montoASuperar then
         sueldoTotal := sueldoTotal + sueldoBasico*comision2;
@@ -56,9 +46,9 @@ begin
             sueldoTotal := sueldoTotal + presentismo
     else
         if ausencia>2 then
-            sueldoTotal := sueldoTotal - sueldoTotal*descuento;
+            sueldoTotal := sueldoTotal*(1-descuento);
 
-    writeln('El sueldo total del empleado es: ', sueldoTotal:5:2);
+    writeln('El sueldo total del empleado es: ', sueldoTotal:0:2);
     readln();
         
 end.

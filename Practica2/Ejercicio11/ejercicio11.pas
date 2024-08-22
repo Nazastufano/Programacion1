@@ -4,7 +4,7 @@ Program Ejercicio11;
 corresponde el número ingresado. *)
 
 var
-    dia: integer;
+    dia: byte;
 begin
 
     repeat
@@ -14,7 +14,7 @@ begin
         if (dia < 1) or (dia > 31) then
             writeln('Ingrese un dia valido');
     until (dia in [1..31]);
- 
+    
     case dia of
         1, 8, 15, 22, 29: writeln('El dia ingresado es Lunes');
         2, 9, 16, 23, 30: writeln('El dia ingresado es Martes');
@@ -25,4 +25,21 @@ begin
         7, 14, 21, 28: writeln('El dia ingresado es Domingo');
     end;
 
+    {
+    While dia>7 Do
+    Begin
+        dia := dia - 7;
+    End;
+
+    Case dia Of 
+        1:   writeln('El dia ingresado es Lunes');
+        2:   writeln('El dia ingresado es Martes');
+        3:   writeln('El dia ingresado es Miercoles');
+        4:   writeln('El dia ingresado es Jueves');
+        5:   writeln('El dia ingresado es Viernes');
+        6:   writeln('El dia ingresado es Sabado');
+        7:   writeln('El dia ingresado es Domingo');
+    End;
+
+    }
 end.

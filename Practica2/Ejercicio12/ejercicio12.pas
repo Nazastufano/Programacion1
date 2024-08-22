@@ -14,15 +14,13 @@ const
     E = 150.10; //Euro
     R = 26.50;  //Real
 var
-    cantidadDePesos: integer;
-    pesos: real;
+    cantidadDePesos, pesos: real;
     tipoDeCambio: char;
 begin
     pesos := 0;
-    repeat
-        writeln('Ingrese la cantidad de pesos: ');
-        readln(cantidadDePesos);
-    until cantidadDePesos>0;
+    
+    writeln('Ingrese la cantidad de pesos: ');
+    readln(cantidadDePesos);
 
     repeat
         writeln('Ingrese el tipo de cambio que desea hacer: (D=Dólar, E=Euro, R=Real) ');
