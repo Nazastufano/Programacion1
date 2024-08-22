@@ -15,16 +15,18 @@ const
     precioBaseH = 1000;
     precioBaseM = 1200;
     iva = 0.21;
+    desc = 0.05;
+    descExtra = 0.07;
 var
 
     respuesta, genero, talle: char;
-    contCompra: integer;
+    contCompra: byte;
     totalAPagar: real;
 
 begin
     contCompra := 0;
     totalAPagar := 0;
-    respuesta := 'a';
+    //respuesta := 'N';
 
     repeat
         repeat
@@ -41,10 +43,10 @@ begin
         
 
         if (talle = 'S') and (genero = 'H') then //descuento
-            totalAPagar := totalAPagar + precioBaseH - precioBaseH*0.05
+            totalAPagar := totalAPagar + precioBaseH*(1-desc)
         else
             if (talle = 'X') and (genero = 'M') then
-                totalAPagar := totalAPagar + precioBaseM - precioBaseM*0.05
+                totalAPagar := totalAPagar + precioBaseM*(1-desc)
             else
                 if genero = 'M' then
                     totalAPagar := totalAPagar + precioBaseH
@@ -56,7 +58,7 @@ begin
             readln(respuesta);
             respuesta := UpCase(respuesta);
 
-            if (respuesta <> 'S') or (respuesta <> 'N') then
+            if (respuesta <> 'S') and (respuesta <> 'N') then
                 writeln('Por favor, responda correctamente')
             else
                 contCompra := contCompra + 1;
@@ -65,13 +67,10 @@ begin
     until respuesta = 'N';
 
     if contCompra>12 then
-        begin
-            totalAPagar := totalAPagar - totalAPagar*0.07;
-            totalAPagar := totalAPagar + totalAPagar*iva;
-        end
-    else
-        totalAPagar := totalAPagar + totalAPagar*iva;
-    writeln('El monto a pagar es: $', totalAPagar:5:2);
+        totalAPagar := totalAPagar*(1-descExtra);
+    
+    totalAPagar := totalAPagar*(1 + iva);
+    writeln('El monto a pagar es: $', totalAPagar:0:2);
     readln();
     
 end.

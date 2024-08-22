@@ -57,6 +57,6 @@ begin
 
     if tiempo > 15 then
         totalAPagar := totalAPagar + totalAPagar*0.05;
-    writeln('El total a pagar es: ', totalAPagar:5:2);
+    writeln('El total a pagar es: ', totalAPagar:0:2);
     readln();
 end.
