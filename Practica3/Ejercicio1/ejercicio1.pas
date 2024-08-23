@@ -11,8 +11,8 @@ Ejemplo: N = 10, 78, 45, 80, 56, 80, 32, 90, 89, 90, 45
 *)
 
 var
-    cant, num, i, max, minImpar, numRepe, posicion: integer;
-
+    num, max, minImpar, numRepe: integer;
+    i, cant, posicion: byte;
 begin
     max := -32767;
     minImpar := 32767;

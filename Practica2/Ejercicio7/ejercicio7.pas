@@ -26,7 +26,6 @@ var
 begin
     contCompra := 0;
     totalAPagar := 0;
-    //respuesta := 'N';
 
     repeat
         repeat

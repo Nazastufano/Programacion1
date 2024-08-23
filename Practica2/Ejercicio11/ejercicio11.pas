@@ -15,31 +15,15 @@ begin
             writeln('Ingrese un dia valido');
     until (dia in [1..31]);
     
-    case dia of
-        1, 8, 15, 22, 29: writeln('El dia ingresado es Lunes');
-        2, 9, 16, 23, 30: writeln('El dia ingresado es Martes');
-        3, 10, 17, 24, 31: writeln('El dia ingresado es Miercoles');
-        4, 11, 18, 25: writeln('El dia ingresado es Jueves');
-        5, 12, 19, 26: writeln('El dia ingresado es Viernes');
-        6, 13, 20, 27: writeln('El dia ingresado es Sabado');
-        7, 14, 21, 28: writeln('El dia ingresado es Domingo');
-    end;
-
-    {
-    While dia>7 Do
-    Begin
-        dia := dia - 7;
-    End;
+    dia := dia mod 7;
 
     Case dia Of 
+        0:   writeln('El dia ingresado es Domingo');
         1:   writeln('El dia ingresado es Lunes');
         2:   writeln('El dia ingresado es Martes');
         3:   writeln('El dia ingresado es Miercoles');
         4:   writeln('El dia ingresado es Jueves');
         5:   writeln('El dia ingresado es Viernes');
         6:   writeln('El dia ingresado es Sabado');
-        7:   writeln('El dia ingresado es Domingo');
     End;
-
-    }
 end.
