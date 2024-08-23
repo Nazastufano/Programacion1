@@ -3,13 +3,12 @@ Program Ejercicio3;
 (*Ej 3) Ingresar N números enteros, informar cuántas veces un número supera al anterior. *)
 
 var
-    i, cant, anterior, numero, cantSupAnt: integer;
-
+    anterior, numero: integer;
+    i, cant,cantSupAnt: byte;
 begin
-    repeat
-        writeln('Ingrese la cantidad de numeros que desea ingresar: ');
-        readln(cant);
-    until (cant>0);
+    
+    writeln('Ingrese la cantidad de numeros que desea ingresar: ');
+    readln(cant);
 
     writeln('Ingrese el numero de la primera posicion: ');
     readln(anterior);
