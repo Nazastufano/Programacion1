@@ -1,5 +1,5 @@
 program Ejercicio22;
-
+//uses crt;
 (*Ej 22) A partir de un archivo de texto que contiene palabras separadas entre sí por uno o más blancos
 desarrollar un programa para:
 a) Mostrar la palabra con más cantidad de vocales del texto.
@@ -7,38 +7,56 @@ b) Grabar en un texto de salida las palabras con más de cuatro letras pero escr
 c) Contar cuántas son palíndromas (capicúas). 
 *)
 var
-    arch: text;
+    archEntrada, archSalida: text;
     caracter: char;
-    cadena, palMasVoca:string;
-    contVocales,maxVocal: integer;
+    cadena, palMasVoca, palabraInvertida:string;
+    contVocales, maxVocal, contPalindromas: byte;
+    
 begin
-    assign(arch, 'datos.TXT');
-    reset(arch);
-    //a)
-    while (not eoln(arch)) do
+    //clrscr;
+    assign(archEntrada, 'datos.TXT');
+    Assign(archSalida, 'salida.TXT');
+    reset(archEntrada);
+    Rewrite(archSalida);
+
+    contPalindromas := 0;
+    
+    while (not eof(archEntrada)) do
         begin
             cadena := '';
+            palabraInvertida := '';
             contVocales := 0;
             
-            if caracter = ' ' then
-                read(arch, caracter)
-            else
+            repeat
+                read(archEntrada, caracter);
+            until (caracter <> ' ') or (eof(archEntrada)) or (eoln(archEntrada));
+            
+            while (caracter <> ' ') and (not eof(archEntrada)) and (not eoln(archEntrada)) do
                 begin
-                    while (caracter <> ' ') and (not eoln(arch)) do
-                        begin
-                            if caracter in ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'] then
-                                contVocales := contVocales + 1;
-                            cadena := cadena + caracter;
-                            read(arch, caracter);
-                        end;
+                    if upcase(caracter) in ['A', 'E', 'I', 'O', 'U'] then
+                        contVocales := contVocales + 1;
+                    cadena := cadena + caracter;
+                    palabraInvertida := caracter + palabraInvertida;
+                    read(archEntrada, caracter);
                 end;
-
+            
+            cadena := lowerCase(cadena);
+            palabraInvertida := lowerCase(palabraInvertida);
+            //b)
+            if contVocales > 4 then
+                Writeln(archSalida, palabraInvertida);
+            //c)
+            if palabraInvertida = cadena then
+                contPalindromas := contPalindromas + 1;
+                
             if maxVocal<contVocales then
                 begin
                     maxVocal := contVocales;
                     palMasVoca := cadena;
                 end;
-            read(arch, caracter);
         end;
-    writeln('La palabra con mas cantidad de vocales del texto es: ', palMasVoca);
+    Close(archEntrada);
+    Close(archSalida);
+    writeln('La palabra con mas cantidad de vocales del texto es: ', palMasVoca); //a)
+    WriteLn('La cantidad de polindromas es: ', contPalindromas);
 end.

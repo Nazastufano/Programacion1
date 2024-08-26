@@ -9,8 +9,7 @@ insuficiencia de fondos.*)
 
 var
     movimiento:char;
-    monto, deposito, retiro: integer;
-    finDeDatos: boolean;
+    monto, deposito, retiro: real;
 
 begin
     repeat
@@ -21,7 +20,7 @@ begin
     while movimiento <> 'F' do
         begin
             Repeat
-                writeln('ingrese movimiento: (d=depósito, r=retiro ó f= fin de datos)');
+                writeln('ingrese movimiento: (D = deposito, R = retiro o F = fin de datos)');
                 readln(movimiento);
                 movimiento := UpCase(movimiento);
             until (movimiento='D') or (movimiento='R') or (movimiento='F') ;
@@ -51,7 +50,7 @@ begin
                 'F': writeln('Operacion terminada');
             end;
         end;
-    writeln('Su monto es: ', monto);
+    writeln('Su monto es: ', monto:0:2);
     readln();
 end.
 

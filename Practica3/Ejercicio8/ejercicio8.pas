@@ -8,8 +8,8 @@ archivo de texto, un número por línea y luego ejecutar el programa.*)
 //Uses unit1;
 
 Var 
-    Arch:   text;
-    A, Sum, Cont :   integer;
+    Arch: text;
+    A, Sum, Cont: integer;
 
 Begin
     Assign( Arch, 'datos.TXT' );

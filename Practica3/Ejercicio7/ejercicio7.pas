@@ -11,9 +11,9 @@ b) Porcentaje de alumnos Aprobados
 *)
 
 Var 
-    contAlumnos, i,contAA:   byte;
-    nombre:   string;
-    promedio, nota, notaTotal, porcentajeAA:   real;
+    contAlumnos, i, contAA: byte;
+    nombre: string;
+    promedio, nota, notaTotal, porcentajeAA: real;
 
 Begin
     writeln('Ingrese el nombre del alumno');
@@ -25,6 +25,7 @@ Begin
             nota := 0;
             promedio := 0;
             notaTotal := 0;
+            
             For i:=1 To 3 Do
                 Begin
                     repeat
@@ -44,7 +45,7 @@ Begin
                 writeln('Desaprobado');
 
             writeln('El promedio de ', nombre, ' es: ', promedio:5:2);
-            writeln('Ingrese el nombre del alumno');
+            writeln('Ingrese el nombre del alumno. ("***" para fin de datos)');
             readln(nombre);
         End;
 
