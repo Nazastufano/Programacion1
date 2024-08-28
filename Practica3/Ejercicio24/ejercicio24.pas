@@ -29,9 +29,9 @@ begin
             palabra := '';
             Repeat
                 read(archEntrada, caracterAnt);
-            Until ((caracterAnt <> ' ') And (caracterAnt <> '.')) Or (eof(archEntrada)) Or (eoln(archEntrada));
+            Until ((caracterAnt <> ' ')) Or (eof(archEntrada)) Or (eoln(archEntrada));
 
-            while ((caracter <> ' ') And (caracter <> '.')) and (not eoln(archEntrada)) and (not eof(archEntrada)) do
+            while ((caracter <> ' ')) and (not eoln(archEntrada)) and (not eof(archEntrada)) do
                 begin
                     
                     if caracterAnt in ['a'..'z'] then
@@ -62,11 +62,11 @@ begin
                     else 
                         palabra := palabra + caracterAnt;
 
-                    if ((caracter = ' ') or (caracter = '.')) or (eof(archEntrada)) Or (eoln(archEntrada)) then
+                    if ((caracter = ' ')) or (eof(archEntrada)) Or (eoln(archEntrada)) then
                         begin
                             repeat
                                 Read(archEntrada, caracter);
-                            until ((caracter <> ' ') And (caracter <> '.')) Or (eof(archEntrada)) Or (eoln(archEntrada));
+                            until ((caracter <> ' ')) Or (eof(archEntrada)) Or (eoln(archEntrada));
                             caracterAnt:= caracter;
                         end
                     else
