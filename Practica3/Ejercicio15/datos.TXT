@@ -1,3 +1,3 @@
-Este es un ejemplo de un texto simple que contiene una secuencia de caracteres.
-Puedes usar este texto para probar tus programas o realizar experimentos simples.
-Rodrigo pedro laura agua amigo rojo azul.
+Este es un ejemplo de un texto simple que contiene una secuencia de caracteres. 
+Puedes usar este texto para probar tus programas o realizar experimentos simples. 
+Rodrigo pedro laura agua amigo rojo azul. 

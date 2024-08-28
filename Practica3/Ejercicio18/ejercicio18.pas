@@ -8,10 +8,10 @@ const
 
 var
     arch:text;
-    precio, mayCantArtOferta, contCliSoloOfer, contArticulosOferta, montoTotal:integer;
+    mayCantArtOferta, contCliSoloOfer, contArticulosOferta: word;
     descuento, aux: char;
     cliente, nombreMayCantArtOfer: string;
-    totalDescuento, totalAPagar: real;
+    totalDescuento, precio, montoTotal, totalAPagar: real;
     soloOferta: boolean;
 
 begin
@@ -56,7 +56,7 @@ begin
                     if soloOferta then
                         contCliSoloOfer := contCliSoloOfer + 1;
                     
-                    writeln('El monto total de la vente es: ', montoTotal, '. El descuento aplicado es: ', totalDescuento:0:2, '. El total a pagar es: ', totalAPagar:0:2);
+                    writeln('El monto total de la vente es: ', montoTotal:0:2, '. El descuento aplicado es: ', totalDescuento:0:2, '. El total a pagar es: ', totalAPagar:0:2);
                     
                     soloOferta := true;
                     totalAPagar := 0;

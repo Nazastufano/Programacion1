@@ -13,9 +13,10 @@ c) Total de litros consumidos por el auto que hizo la menor cantidad de kms. *)
 
 var
     arch: text;
-    n, kilometros, menCantLitros, litros, contKilometros, minCantKm, i, nViajes, masViajes: integer;
+    n, kilometros, menCantLitros, litros, contKilometros, minCantKm, nViajes, masViajes: word;
     patente, patenteMasViajes: string[6];
     cantLitros: real;
+    i :byte;
 
 begin
     assign(arch, 'datos.TXT');

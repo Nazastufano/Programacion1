@@ -16,10 +16,11 @@ const
     
 var
     cliente, nombreMayCantArtOfer: string[10];
-    i, contCliSoloOfer, articulos, precio, montoTotal, contArticulosOferta, mayCantArtOferta: integer;
+    contCliSoloOfer, articulos, contArticulosOferta, mayCantArtOferta: word;
     descuento: char;
     soloOferta: boolean;
-    totalDescuento, totalAPagar: real;
+    totalDescuento, totalAPagar, precio, montoTotal: real;
+    i:byte;
 
 begin
     writeln('Ingrese el nombre del cliente: ');
@@ -30,10 +31,8 @@ begin
             contArticulosOferta := 0;
             soloOferta := true;
             
-            repeat
-                writeln('Cuantos articulos compro: ');
-                readln(articulos);
-            until articulos>0;
+            writeln('Cuantos articulos compro: ');
+            readln(articulos);
             
             for i := 1 to articulos do
                 begin
@@ -72,9 +71,9 @@ begin
                     nombreMayCantArtOfer:= cliente;
                 end;
 
-            writeln('El monto total de la vente es: ', montoTotal, '. El descuento aplicado es: ', totalDescuento:0:2, '. El total a pagar es: ', totalAPagar:0:2);
+            writeln('El monto total de la vente es: ', montoTotal:0:2, '. El descuento aplicado es: ', totalDescuento:0:2, '. El total a pagar es: ', totalAPagar:0:2);
 
-            writeln('Ingrese el nombre del cliente: ');
+            writeln('Ingrese el nombre del cliente: ("*****" para fin de datos)');
             readln(cliente);
         end;
     writeln('El cliente que mas articulos en oferta compro es: ', nombreMayCantArtOfer);

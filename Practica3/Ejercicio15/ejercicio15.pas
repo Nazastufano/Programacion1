@@ -11,7 +11,7 @@ var
     caracter:char;
     letra: string[1];
     palabra: string;
-    contadorComienzanCon, contadorContienen: integer;
+    contadorComienzanCon, contadorContienen: word;
 
 begin
     contadorComienzanCon := 0;
