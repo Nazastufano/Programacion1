@@ -71,7 +71,6 @@ begin
                     If (Length(palabraMasLarga) < Length(palabra))  Then
                         palabraMasLarga := palabra;
                 End;
-
         end;
     Close(archSalida);
     Close(archEntrada);
@@ -81,5 +80,4 @@ begin
         WriteLn('La longitud de la contraseña inválida más larga es de ', Length(palabraMasLarga),' caracteres. Y la palabra es: ', palabraMasLarga)
     else
         WriteLn('No hay contraseñas invalidas');
-    
 end.

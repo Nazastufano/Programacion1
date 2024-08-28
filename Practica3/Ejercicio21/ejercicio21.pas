@@ -13,42 +13,47 @@ El subconjunto con más elementos es: 2
 
 var
     arch:text;
-    numero, numeroMax, contElem, contMasElem, contConj, conjMax: integer;
-    
+    numero, numeroMax: char;
+    contMasElem, contElem, contConj, conjMax: byte;
+
 begin
     assign(arch, 'datos.TXT');
     reset(arch);
     contMasElem := 0;
+    conjMax := 0;
 
-    read(arch, numero);
     writeln('Subconjunto - maximo');
 
-    while not eoln(arch) do
+    while not eof(arch) do
         begin
             contElem := 0;
-            numeroMax :=0;
-            while numero <> 0 do
+            numeroMax := '0';
+
+            repeat
+                Read(arch, numero);
+            until ((numero <> ' ') and (numero <> ',') and (numero <> '0')) or (Eof(arch)) or (eoln(arch));
+            
+            while ((numero <> '0')) and (Not Eof(arch)) and (Not eoln(arch)) do
                 begin
-                    if numeroMax<numero then
-                        begin
-                            numeroMax:= numero;
-                        end;
-                    contElem:= contElem + 1;
+                    if numeroMax < numero then
+                        numeroMax := numero;
+                        
+                    contElem := contElem + 1;
                     read(arch, numero);
                 end;
-            contConj := contConj + 1;
-
-            if contMasElem < contElem then
+            
+            if numero = '0' then
                 begin
-                    contMasElem := contElem;
-                    conjMax:= contConj;        
+                    contConj := contConj + 1;
+
+                    If contMasElem < contElem Then
+                        Begin
+                            contMasElem := contElem;
+                            conjMax := contConj;
+                        End;
+
+                    writeln(contConj, ' - ', numeroMax);
                 end;
-
-            writeln(contConj, ' - ', numeroMax);
-            read(arch, numero);
-
-            if numero = 0 then
-                read(arch, numero);
         end;
     close(arch);
     writeln('El subconjunto con más elementos es: ', conjMax);
