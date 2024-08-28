@@ -20,36 +20,34 @@ begin
     reset(arch);
 
     cadenaNum := '';
+    
 
     repeat
-        read(arch, numero);    
-    until (numero < 0);
-    
+        read(arch, numero);
+    until (numero < 0); 
+
     while (not eof(arch)) do
         begin
             repeat
-                if numero<0 then
+                if numero <=0 then
                     begin
                         contNumeros := 0;
                         sumaNumeros := 0;    
                     end;
 
-                if numero = 0 then
-                    read(arch, numero); 
-
                 read(arch, numero);
-            until (numero >= 0);
+            until (numero > 0);
+            
 
-            while (numero >= 0) and (not eoln(arch)) do
+            while (numero >= 0) and (not eoln(arch)) do 
                 begin
                     if numero<>0 then
                         begin
                             contNumeros := contNumeros + 1;
                             sumaNumeros := sumaNumeros + numero;
-                            read(arch, numero);         
                         end;
-                    if numero = 0 then
-                        read(arch, numero);   
+
+                    read(arch, numero);   
                 end;
             
             if (not eoln(arch)) or (numero<0) then

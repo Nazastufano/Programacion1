@@ -71,9 +71,6 @@ begin
                         end
                     else
                         read(archEntrada, caracterAnt);
-
-                    
-                    
                 end;
             WriteLn(archSalida, palabra);
             
