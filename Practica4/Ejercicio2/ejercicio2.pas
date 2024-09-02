@@ -5,10 +5,10 @@ program Ejercicio2;
         n! = 1 (si n=0)
         n! = n(n-1)! (si n>0) *)
         
-Function Factorial(n: integer): integer;
+Function Factorial(n: word): word;
     var
-        i, res: integer;
-
+        i: byte;
+        res: word;
     begin
         res:= 1;
 
@@ -25,15 +25,14 @@ Function Factorial(n: integer): integer;
     end;
 
 var
-    numero: integer;
+    numero: word;
     
 begin
-    repeat
-        writeln('Ingrese un numero para factorizar');
-        readln(numero);    
-    until (numero>=0);
     
-    writeln('El factorial del numero es: ', Factorial(numero));
+    writeln('Ingrese un numero para factorizar');
+    readln(numero);    
+    
+    writeln('EL resultado de ', numero ,'! es: ', Factorial(numero));
     readln();
 end.
 

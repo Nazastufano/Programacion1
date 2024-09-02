@@ -1,27 +1,34 @@
-program Ejercicio4;
+Program Ejercicio4;
 
 (*Ej 4) Desarrollar una función que calcule la potencia n-ésima de un número X (X^n). *)
 
-uses
-    math;
-
-function Potencias(x,n: real):real;
-    var
-        resultado: real;
-    begin
-        resultado := power(x,n);
-        Potencias := resultado;
-    end;
+function Potencia(x:integer; n:integer): real;
+var
+    i: byte;
+    res:Integer;
+begin
+    res:=1;
+    for i:=1 to abs(n) do
+        begin
+            res:= x*res;
+        end;
+    
+    if n>=0 then
+        Potencia := res
+    else
+        Potencia := (1/res);
+end;
 
 var
-    base, exponenete: real;
+    num, expo:integer;
+    
 
 begin
-    writeln('Ingrese un numero base: ');
-    readln(base);
+    WriteLn('Ingrese la base: ');
+    ReadLn(num);
+    WriteLn('Ingrese el exponente: ');
+    ReadLn(expo);
 
-    writeln('Ingrese un exponente: ');
-    readln(exponenete);
+    WriteLn('El resultado es: ', Potencia(num,expo):0:3);
 
-    writeln(Potencias(base,exponenete):0:2);
 end.
