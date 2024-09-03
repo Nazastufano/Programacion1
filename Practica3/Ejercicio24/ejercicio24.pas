@@ -36,13 +36,17 @@ begin
                     
                     if caracterAnt in ['a'..'z'] then
                         begin
+                            
                             Read(archEntrada, caracter);
 
                             if (caracter in ['a'..'z']) then
                                 begin
-                                    palabra := palabra + caracterAnt;
-                                    caracterAnt := caracter;
-                                    Read(archEntrada, caracter);
+                                    Repeat
+                                        palabra := palabra + caracterAnt;
+                                        caracterAnt := caracter;
+                                        Read(archEntrada, caracter);
+                                    Until Not (caracter In ['a'..'z']);
+        
                                 end;
 
                             if caracter in ['1'..'9'] then                            

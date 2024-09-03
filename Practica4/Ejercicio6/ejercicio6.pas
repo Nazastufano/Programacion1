@@ -4,13 +4,10 @@ program Ejercicio6;
 por teclado. 
 Nota: usar la función Random y Randomize. *)
 
-uses
-    SysUtils;
-
 function NumAleatorio(a,b:integer):integer;
     begin
         Randomize;
-        NumAleatorio := Random(b - a + 1) + a; 
+        NumAleatorio := Random(b - a + 1) + a;
     end;
 
 var
