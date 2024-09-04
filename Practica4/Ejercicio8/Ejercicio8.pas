@@ -21,55 +21,88 @@ devuelva el correspondiente descuento.
 function Descuento(tC:char; dias:byte; valor:real):real;
 begin    
     If (tC = 'O') and ((dias = 10) Or (dias = 20) Or (dias = 30)) And (valor>300) Then
-        begin
-            Descuento := valor*(0.95);  
-        end
+        Descuento := valor*(0.95)
     else    
         If (tC = 'C') And (dias>=15) Then
-            begin
-                Descuento := valor*(0.90);
-            end
-            
+            Descuento := valor*(0.90)
         else
             If (tC = 'S') And (dias<=15) Then
-                begin
-                    Descuento := valor*(0.85);
-                end
+                Descuento := valor*(0.85)                
             else
                 Descuento:= valor;
-    
 end;
+
+function Ahorrado(tC:char; dias:byte; valor:real):real;
+begin    
+    If (tC = 'O') and ((dias = 10) Or (dias = 20) Or (dias = 30)) And (valor>300) Then
+        Ahorrado := valor*(0.5)
+    else    
+        If (tC = 'C') And (dias>=15) Then
+            Ahorrado := valor*(0.10)
+        else
+            If (tC = 'S') And (dias<=15) Then
+                Ahorrado := valor*(0.15)                
+            else
+                Ahorrado:= 0;
+end;
+
+
 type
     ST10 = String[10];
 
 var
     arch:text;
     codCliente: ST10;
-    dia:byte;
-    monto, montoTotal:real;
-    tipoCompra,aux:char;
-    descuentoActivo, descS, descC, descO:Boolean;
+    dia, contCliSinDesc:byte;
+    monto, montoTotal, ahorro:real;
+    tipoCompra:char;
+    descS, descC, descO:   Boolean;
+
 begin
     Assign(arch, 'datos.txt');
     reset(arch);
-
+    contCliSinDesc:= 0;
     while not eof(arch) do
         begin
+            descS := false;
+            descC := false;
+            descO := false;
+
+            ahorro:= 0;
             montoTotal:= 0;
+
             readln(arch, codCliente);
             
-            Readln(arch, tipoCompra, dia, monto);
+            Read(arch, tipoCompra);
             tipoCompra:= upCase(tipoCompra);
             while tipoCompra <> 'F' do
             begin
+                readln(arch, dia, monto);
                 montoTotal:= montoTotal + Descuento(tipoCompra, dia, monto);
-
-                Readln(arch, tipoCompra, dia, monto);
+                ahorro:= ahorro + Ahorrado(tipoCompra, dia, monto);
+                
+                If (tipoCompra = 'O') and ((dia = 10) Or (dia = 20) Or (dia = 30)) And (monto>300) Then
+                    descO := true;
+                If (tipoCompra = 'C') And (dia>=15) Then
+                    descC := true;
+                If (tipoCompra = 'S') And (dia<=15) Then
+                    descS := true;   
+                
+                Read(arch, tipoCompra);
                 tipoCompra := upCase(tipoCompra);
             end;
+            if tipoCompra = 'F' then
+                ReadLn(arch);
             
+            WriteLn('El cliente: ',codCliente, '. Ha ahorrado: $', ahorro:0:2);
+
+            If (descO= false) And (descC = false) And (descS = false) Then
+                WriteLn('El cliente: ', codCliente, '. Ha gastado: $', montoTotal:0:2);    
+                            
+            if descO and descS and descC then
+                contCliSinDesc:= contCliSinDesc +1;
             
         end;
     close(arch);
-    WriteLn(montoTotal:0:2);
+    WriteLn('La cantidad de clientes que obtuvieron desceuento en los 3 rubros son: ', contCliSinDesc);
 end.
