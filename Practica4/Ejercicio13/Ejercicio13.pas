@@ -3,10 +3,10 @@ program Ejercicio13;
 (* Ej 13) Desarrollar un procedimiento que dada una Hora Inicial (horas, minutos, segundos) y unos
 segundos transcurridos, devuelva la Hora Final (en horas, minutos y segundos). *)
 
-procedure HoraTranscurrida(tiempoPasado:word; var h,m,s:byte);
+procedure HoraTranscurrida(tiempoPasado:Longword; var h,m,s:byte);
 var
     seg, min, hor: byte;
-    tiempo: word;
+
 begin    
     seg := tiempoPasado Mod 60;
     min := tiempoPasado div 60;    
@@ -36,7 +36,7 @@ end;
 
 var
     horas, minutos, segundos:byte;
-    segTransc:word;
+    segTransc:Longword;
 
 begin
     repeat
