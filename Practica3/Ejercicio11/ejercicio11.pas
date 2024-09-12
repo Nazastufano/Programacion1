@@ -7,10 +7,10 @@ b) Ej 7, en cada línea del archivo: Nombre (15 caracteres) y las tres notas rea
 
 var
     arch1, arch2: text;
-    saldo, dinero, contAA, contAlumnos: integer;
+    contAA, contAlumnos: word;
     movimiento: char;
     nombre: string[15];
-    nota1, nota2, nota3, promedio, porcentajeAA: real;
+    saldo, dinero, nota1, nota2, nota3, promedio, porcentajeAA: real;
 
 begin
     //a)
@@ -20,8 +20,7 @@ begin
 
     while NOT eof(arch1) do
     begin
-        read(arch1, movimiento);
-        readln(arch1, dinero);
+        readln(arch1, movimiento,dinero);
 
         case movimiento of
             'D':
@@ -39,7 +38,7 @@ begin
                         writeln('Movimiento invalido');                    
                 end;
         end;
-        writeln(saldo);
+        writeln(saldo:0:2);
     end;
     close(arch1);
     readln();
@@ -50,9 +49,7 @@ begin
     while NOT eof(arch2) do
         begin
             readln(arch2, nombre);
-            read(arch2, nota1);
-            read(arch2, nota2);
-            read(arch2, nota3);
+            readln(arch2, nota1,nota2,nota3);
             contAlumnos:= contAlumnos +1;
             promedio := (nota1+nota2+nota3)/3;
 
@@ -64,7 +61,7 @@ begin
             Else
                 write('Desaprobado. ');
             writeln('El promedio de: ', nombre, ' es ', promedio:0:2);
-            readln(arch2, nombre);
+            
         end;
     close(arch2);
     porcentajeAA := (contAA*100)/contAlumnos;

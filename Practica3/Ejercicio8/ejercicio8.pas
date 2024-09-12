@@ -12,7 +12,7 @@ Var
     A, Sum, Cont: integer;
 
 Begin
-    Assign( Arch, 'datos.TXT' );
+    Assign( Arch, 'datos.TXT' ); 
     reset( Arch );
     Sum := 0;
     Cont := 0;
@@ -30,4 +30,5 @@ Begin
         Writeln((Sum / Cont):5:2)
     Else
         Writeln ('no hay numeros positivos');
+    (*El programa saca el promedio de numeros positivos*)
 End.

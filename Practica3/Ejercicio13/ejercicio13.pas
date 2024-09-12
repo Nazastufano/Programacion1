@@ -17,10 +17,7 @@ program Ejercicio13;
  . . . 
  *)
 
-begin
-    Readln( Tipo, Precio); 
-    Tipo := Upcase(Tipo);
- 
+begin 
     //{P=panadería, F=fiambrería, A=almacén}
  
     repeat

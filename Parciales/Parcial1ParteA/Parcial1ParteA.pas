@@ -21,15 +21,15 @@ type
     ST10 = string[10];
 var
     arch: text;
-    dado1,dado2,n, i, contJugadores, contJugaConSies:byte;
+    dado1, dado2, n, i, contJugadores, contJugaConSeis:byte;
     puntaje,puntajeSuperar:word;
     nombre: ST10;
-    sacaSies:Boolean;
+    sacaSeis:Boolean;
 begin
     Assign(arch, 'Juego.TXT');
     Reset(arch);
     contJugadores := 0;
-    contJugaConSies := 0;
+    contJugaConSeis := 0;
     WriteLn('Ingrese un puntaje que a superar: ');
     ReadLn(puntajeSuperar);
     
@@ -37,7 +37,7 @@ begin
     ReadLn(arch,nombre);
     while nombre <> 'XXX' do
     begin
-        sacaSies:= false;
+        sacaSeis:= false;
         contJugadores:= contJugadores +1;
         puntaje:= 0;
         for i:= 1 to n do
@@ -52,14 +52,14 @@ begin
                         puntaje := dado1 + dado2;
                 
                 if (dado1 = 6) or (dado2 = 6) then
-                    sacaSies:= true;    
+                    sacaSeis:= true;    
             end;
-        if sacaSies and (puntaje<puntajeSuperar) then
-            contJugaConSies:= contJugaConSies +1;
+        if sacaSeis and (puntaje<puntajeSuperar) then
+            contJugaConSeis:= contJugaConSeis +1;
         
         WriteLn('El puntaje de: ', nombre, ' es: ', puntaje);
         ReadLn(arch,nombre);
     end;
     close(arch);
-    WriteLn('El porcentaje de jugadores que no superaron el puntaje ', puntajeSuperar, ' y que sacaron al menos un 6 en alguna tirada es ', contJugaConSies*100/contJugadores:0:0,'%')
+    WriteLn('El porcentaje de jugadores que no superaron el puntaje ', puntajeSuperar, ' y que sacaron al menos un 6 en alguna tirada es ', contJugaConSeis*100/contJugadores:0:0,'%')
 end.

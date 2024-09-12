@@ -1,8 +1,8 @@
 program Ejercicio17;
 
 (*Ej 17) La cajera de un supermercado ha registrado varias ventas, de cada una sabe:
- Nombre del cliente ( “ ***** “ indica fin de datos )
- Cantidad de artículos que compró el cliente y por cada uno se conoce:
+    Nombre del cliente ( “ ***** “ indica fin de datos )
+    Cantidad de artículos que compró el cliente y por cada uno se conoce:
 - Precio base del artículo
 - Si está o no en promoción ( ‘S’ ó ‘N’ )
 En el caso de estar en promoción, se realiza un descuento del 10% sobre el precio base.
@@ -38,7 +38,7 @@ begin
                 begin
                     repeat
                         writeln('Ingrese el precio del articulo: ');
-                        readln(precio);    
+                        readln(precio);
                     until (precio>0);
                     
                     repeat

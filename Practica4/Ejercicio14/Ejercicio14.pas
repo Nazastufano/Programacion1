@@ -30,35 +30,35 @@ Begin
     Max := 0;
     contPalMasLargas := 0;
     While not eof(arch) Do
-            Begin { es el comienzo de palabra}
-                Pal := '';
-                i := 0;
-                Read(arch, car);
-                While (Car <> '.') Do
-                    Begin {cuenta los caracteres y arma la palabra}
-                        i := i+1;
-                        Pal := Pal + Car;
-                        Read(Arch, Car);
-                    End;
+        Begin { es el comienzo de palabra}
+            Pal := '';
+            i := 0;
+            Read(arch, car);
+            While (Car <> '.') Do
+                Begin {cuenta los caracteres y arma la palabra}
+                    i := i+1;
+                    Pal := Pal + Car;
+                    Read(Arch, Car);
+                End;
 
                 
-                If i>Max Then {evalua si es mas larga}
-                    Begin
-                        Todas := Pal;
-                        Max := i;
-                        
-                    End
-                Else
-                    If i = Max Then {evalua si es igual}
-                        begin
-                            contPalMasLargas := contPalMasLargas + 1;
-                            Todas := Todas + ' ' + Pal;
-                        end;
+            If i>Max Then {evalua si es mas larga}
+                Begin
+                    Todas := Pal;
+                    Max := i;
+                End
+            Else
+                If i = Max Then {evalua si es igual}
+                    begin
+                        contPalMasLargas := contPalMasLargas + 1;
+                        Todas := Todas + ' ' + Pal;
+                    end;
                 
-                Readln(arch);
-            End;
-        Close(Arch);
-    End;
+            Readln(arch);
+        End;
+    Close(Arch);
+End;
+
 Var 
     Todas:   string;
     Max, contPalMasLargas :   byte;

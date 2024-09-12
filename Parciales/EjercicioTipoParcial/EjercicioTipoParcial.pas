@@ -13,9 +13,8 @@ c) Cuántos Tambos superaron X litros en total. (X es dato ingresado por teclado
 var
     arch:text;
     n, diaMasLitros,diaDeEntrega, contDias, superaLitros:Byte;
-    litrosASuperar, contLitros,litros,masLitros:word;
     nombre:string;
-    promedio:real;
+    litrosASuperar, contLitros,litros,masLitros, promedio:real;
 
 begin
     Assign(arch, 'datos.TXT');
@@ -59,6 +58,6 @@ begin
         promedio:= contLitros/contDias;
         WriteLn('El promedio del tambo de ', nombre, ' es de: ', promedio:0:2,'L');
     end;
-    WriteLn('La cantidad de tambos que han superado los ', litrosASuperar,'L han sido: ',superaLitros );
+    WriteLn('La cantidad de tambos que han superado los ', litrosASuperar:0:2,'L han sido: ',superaLitros );
     Close(arch);
 end.
