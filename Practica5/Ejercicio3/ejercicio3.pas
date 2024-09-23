@@ -1,66 +1,59 @@
 program Ejercicio3;
 
-(*Ej 3) Dado un arreglo V y un número K, cambiar todas las ocurrencias 
-de K por 0. *)
+(*Ej 3) Dado un arreglo V y un número K, cambiar todas las ocurrencias de K por 0. *)
 
+const
+    N = 5;
 type
-    TV = array of integer;
+    TVec = array[1..N] of integer;
+
+procedure CargarArreglo(var vec:TVec);
+var
+    i: byte;
+    val:integer;
+begin
+    for i:=1 to N do
+    begin
+        WriteLn('Ingrese el elemento de la posicion: ', i);
+        ReadLn(val);
+        vec[i]:= val;
+    end; 
+end;
+
+procedure RemplazarValor(Var vec:TVec; num:Integer);
+var
+    i: byte;
+begin
+    for i:= 1 to N do
+    begin
+        if num = vec[i] then
+            vec[i]:= 0;
+    end;
+end;
+
+procedure MostrarArreglo(vec: TVec);
+var
+    i: byte;
+begin
+    WriteLn('Los elementos del arreglo son: ');
+    for i:= 1 to N do
+    begin
+        Write(vec[i],' ');
+    end;
+    WriteLn();
+end;
 
 var
-    arreglo: TV;
-    largo, valor, i:integer;
-
-procedure LlenarArreglo(var vec:TV;var n: integer);
-    var
-        i: integer;
-begin
-        
-    repeat
-        writeln('Ingrese el largo del arreglo: ');
-        readln(n);
-    until (n>0);
-
-    setLength(vec, n);
-
-    for i := 0 to (Length(vec)-1) do        
-        begin
-            writeln('Ingrese el valor de la posicion: ', i);
-            readln(vec[i]);   
-        end;
-end;
-
-procedure RemplazarCero(var vec:TV);
-    var
-        valor,i:integer;
-begin
-    writeln('Que numero desea cambiar?');
-    readln(valor);
-
-    for i := 0 to (Length(vec)-1) do
-        begin
-            if vec[i]=valor then
-                vec[i]:=0;      
-        end;
-end;
-
-procedure MostrarArreglo(vec:TV);
-begin
-    for i := 0 to (Length(vec)-1) do
-        begin
-            if i=0 then
-                write('(');
-
-            if (i<>Length(vec)-1) then
-                write(vec[i], ', ')
-            else
-                begin
-                    write(vec[i], ')');      
-                end;
-        end;
-end;
+    vec: TVec;
+    numero:Integer;
 
 begin
-    LlenarArreglo(arreglo,largo);
-    RemplazarCero(arreglo);
-    MostrarArreglo(arreglo);
+    CargarArreglo(vec);
+    MostrarArreglo(vec);
+
+    WriteLn('Ingrese el numero que deseas remplazar con ceros: ');
+    ReadLn(numero);
+    RemplazarValor(vec,numero);
+
+    MostrarArreglo(vec);
 end.

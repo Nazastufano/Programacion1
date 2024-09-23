@@ -8,138 +8,100 @@ d) Generar un arreglo B con los elementos de A permutado ( B[1]=A[N], B[2]=A[N-1
 Escribir el programa principal con las invocaciones a cada uno de los subprogramas, mostrando los
 resultados correspondientes.
 *)
-
+const   
+    N = 5;
 type
-    TVecI = array of real;
+    TVec = array[1..N] of real;
+
+procedure CargarVec(var vecA:TVec);
+var
+    i:byte;
+    val:real;
+begin
+    for i:= 1 to N do
+    begin
+        WriteLn('Ingrese el valor real de la posicion: ', i);
+        ReadLn(val);
+        vecA[i]:= val;
+    end;
+end;
+
+function SumaVec(vec:TVec):real;
+var
+    suma: real;
+    i: byte;
+begin
+    suma:= 0;
+    for i:= 1 to N do
+    begin
+        suma:= suma + vec[i];
+    end;
+    SumaVec:= suma;
+end;
+
+procedure MostrarPares(vec:TVec);
+var
+    i:Byte;
+begin
+    for i:= 1 to N do
+    begin
+        if i mod 2 = 0 then
+            WriteLn('El valor de la posicion ',i, ' es: ', vec[i]:0:2);
+    end;
+end;
+
+function MostrarMax(vec:TVec):real;
+var
+    i:byte;
+    max:real;
+begin
+    for i:=1 to n do
+    begin
+        if (vec[i]>max) or (i=1) then
+            max:= vec[i];
+    end;
+    MostrarMax:= max;
+end;
+
+Function MostrarMin(vec:TVec):real;
+var
+    i:byte;
+    min:real;
+Begin
+    for i:=1 to n do
+    begin
+        if (vec[i]<min) or (i=1) then
+            min:= vec[i];
+    end;
+    MostrarMin:= min;
+End;
+
+procedure InvertirArreglo(var vecB:TVec; vec:TVec);
+var
+    i:byte;
+begin
+
+    for i:=N downto 1 do
+    begin
+        vecB[N-i+1]:=vec[i];
+    end;
+    
+end;
 
 var
-    N, resp: integer;
-    arreglo1, arreglo2: TVecI;
-    resultado:real;
-
-procedure LlenarArreglo(var A: TVecI);
-    var
-        i: integer;
-        valor: real;
-    begin
-        for i := 0 to N - 1 do
-            begin
-                writeln('Escriba el valor ', (i+1) , ' para el arreglo: ');
-                readln(valor);
-                A[i] := valor;
-            end;
-    end;
-
-function SumaArreglo(A: TVecI): real;
-    var
-        i:integer;
-        suma:real;
-    begin
-        for i := 0 to N -1 do
-            begin
-                suma:= suma + A[i];    
-            end;
-        SumaArreglo := suma;
-    end;
-
-function MostrarMin(A:TVecI):real;
-    var
-        i:integer;
-        min, minFinal:real;
-    begin
-        for i := 0 to N-1 do
-            begin
-                min := A[i];
-                
-                if i=0 then
-                    minFinal:= min;
-                
-                if min<minFinal then
-                    minFinal := min;
-            end;
-        MostrarMin:= minFinal;
-    end;
-
-function MostrarMax(A:TVecI):real;
-    var
-        i:integer;
-        max, maxFinal:real;
-    begin
-        for i := 0 to N-1 do
-            begin
-                max := A[i];
-                
-                if i=0 then
-                    maxFinal := max;
-                
-                if max>maxFinal then
-                    maxFinal := max;
-            end;
-        MostrarMax:= maxFinal;
-    end;
-
-procedure MostrarPares(var A: TVecI);
-    var
-        i:integer;
-    begin
-        for i := 0 to N - 1 do
-            if (i mod 2 = 0) then
-                begin
-                    writeln('Un elemento par es: ', A[i]:0:2);
-                end;
-    end;
-
-procedure LlenarOtroArreglo(var A, B: TVecI);
-    var
-        i, pos:integer;
-    begin
-        pos:= Length(A) - 1; 
-        for i := 0 to Length(A) - 1 do
-            begin
-                B[i]:= A[pos];
-                pos :=pos -1;
-            end;
-    end;
+    i: byte;
+    vecB, vecA:TVec;
 
 begin
-    repeat
-        writeln('Ingrese el largo del arreglo: ');
-        readln(N);        
-    until (N>0);
-
-    SetLength(arreglo1, N);
-    SetLength(arreglo2, N);
-
-    LlenarArreglo(arreglo1);
-    repeat    
-        repeat
-            writeln('Que opcion desea llevar a cabo? (1 = Sumar sus valores, 2 = Mostrar las posiciones pares, 3 = Invertir el array y mostrar sus posiciones pares, 4 = Mostrar el valor minimo del array, 5 = Mostrar el valor maximo del array, 6 = Salir)');
-            readln(resp)            
-        until (resp in [1..6]);
-
-        case resp of
-            1:
-                begin
-                    resultado := SumaArreglo(arreglo1);
-                    writeln('La suma de los valores del arreglo es: ',resultado:0:2);
-                end;
-            2:  MostrarPares(arreglo1);
-            3: 
-                begin
-                    LlenarOtroArreglo(arreglo1, arreglo2);
-                    MostrarPares(arreglo2);    
-                end;
-            4:
-                begin
-                    resultado := MostrarMin(arreglo1);
-                    writeln('El valor minimo es: ', resultado:0:2);    
-                end;
-            5:
-                begin
-                    resultado := MostrarMax(arreglo1);
-                    writeln('El valor maximo es: ', resultado:0:2);    
-                end;
-        end;        
-    until (resp = 6);
-
+    CargarVec(vecA);
+    WriteLn('La suma de los elementos del vector es: ', SumaVec(vecA):0:2);
+    MostrarPares(vecA);
+    WriteLn('El valor mas grande de los elementos es: ', MostrarMax(vecA):0:2);
+    WriteLn('El valor mas chico de los elementos es: ', MostrarMin(vecA):0:2);
+    
+    InvertirArreglo(vecB,vecA);
+    for i:= 1 to N do
+    begin
+        WriteLn('El vector invertido en la posicion ', i, ' tiene el valor: ', vecB[i]:0:2);
+    end;
 end.

@@ -2,58 +2,67 @@ program Ejercicio2;
 
 (*Ej 2) Dado un archivo de enteros, se pide almacenar en un vector V sólo los elementos impares y en otro
 vector W, los pares, ignorando si hubiese, los ceros.*)
-
+const
+    N = 10;
 type
-    TV = array of integer;
+    TVec = array[1..N] of Integer;
+
+procedure MostrarArreglo(vec:TVec);
+var
+    i: byte;
+begin
+    i:=1;
+    while vec[i] <> 0 do
+    begin
+        WriteLn('El elemento de la posicion ', i, ' es: ',vec[i]);
+        i := i+1;
+    end;
+end;
+
+Procedure RellenarArreglo(vec:TVec; pos:byte);
+var
+    i:byte;
+begin
+    for i:= pos-1 to N do
+    begin
+        vec[i]:= 0;
+    end;
+end;
 
 var
-    arch: text;
-    V, W: TV;
-    valor, n, m, i: integer;
-
+    arch:text;
+    V,W: TVec;
+    num:Integer;
+    posV,posW: byte;
 begin
-    assign(arch, 'datos.TXT');
-    reset(arch);
-    m := 0;
-    n := 0;
-
-    SetLength(W, 0);
-    SetLength(V, 0);
-
-    read(arch, valor);
+    Assign(arch, 'datos.TXT');
+    Reset(arch);
     
-    while not eof(arch) do
+    posV:=1;
+    posW:=1;
+    while not eof (arch) do
+    begin
+        Read(arch, num);
+
+        if num<>0 then
         begin
-            if valor <> 0 then
+            if (num mod 2) <> 0 then
                 begin
-                    if valor mod 2 = 0 then
-                        begin
-                            SetLength(W, Length(W) + 1);
-                            W[m] := valor;
-                            m := m + 1;
-                        end
-                    else
-                        begin
-                            SetLength(v, Length(v) + 1);
-                            V[n] := valor;
-                            n:= n + 1;
-                        end;    
-                end; 
-            read(arch, valor);
+                    V[posV]:= num; 
+                    posV := posV + 1;
+                end
+            else
+                begin
+                    W[posw]:= num; 
+                    posW := posW + 1;
+                end;
         end;
-    close(arch);
-    
-    writeln('Elementos impares (V): ');
-    for i := 0 to (Length(V) - 1) do
-        begin
-            write(V[i], ' ');    
-        end;
+    end;
+    Close(arch);
+    RellenarArreglo(V,posV);
+    RellenarArreglo(W,posW);
 
-    writeln();
-
-    writeln('Elementos pares (W):');
-    for i := 0 to (Length(W) - 1) do
-        begin
-            write(W[i], ' ');
-        end;
+    MostrarArreglo(V);
+    WriteLn();
+    MostrarArreglo(W);
 end.

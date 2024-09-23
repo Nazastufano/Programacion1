@@ -8,7 +8,7 @@ var
 begin
     primo:= true;
     i:= 2;
-    while i<num do
+    while i<sqrt(num) do
     begin
         if (num mod i) = 0 then
             begin
