@@ -1,4 +1,4 @@
-Program ParcialEj2;
+Program parcialEj2;
 
 (*Ej2)Dada una matriz de números naturales Mat de N filas y
 M columnas, y un vector de números naturales Vec de

@@ -1,0 +1,16 @@
+pedro
+AA111AA
+3
+100
+roberto
+BB222BB
+1
+200
+carlos
+CC333CC
+4
+300
+Ariel
+DD444DD
+2
+2000
