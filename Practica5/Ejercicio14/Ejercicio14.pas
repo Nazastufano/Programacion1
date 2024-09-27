@@ -83,26 +83,31 @@ var
     arch:Text;
     patente:ST7;
     ganacia,ganaciaASuperar:real;
-    contAutos,acumAutos,i:byte;
+    posAutos,acumAutos,i,cantAutos:byte;
     vPatente:TVecPatente;
     vRecaud:TVecRecauda;
     vAcum: TVecRepeticion;
 begin
     Assign(arch,'datos.TXT');
     Reset(arch);
-    contAutos:=0;
+    posAutos:=0;
+    cantAutos:=0;
     while Not eof(arch) do
     begin
         ReadLn(arch,patente,ganacia);
-        BuscarPatente(vPatente,contAutos,patente);
+        BuscarPatente(vPatente,posAutos,patente);
         
-        vAcum[contAutos]:=vAcum[contAutos] +1;
-        vPatente[contAutos] := patente;
-        vRecaud[contAutos]:=vRecaud[contAutos] + ganacia;
+        vAcum[posAutos]:=vAcum[posAutos] +1;
+        vPatente[posAutos] := patente;
+        vRecaud[posAutos]:=vRecaud[posAutos] + ganacia;
+
+        if cantAutos<posAutos then
+            cantAutos:=posAutos;
     end;
+    WriteLn(posAutos);
     close(arch);
     
-    PromPorAuto(vPatente,vRecaud,vAcum,contAutos);
+    PromPorAuto(vPatente,vRecaud,vAcum,cantAutos);
     WriteLn('Ingrese la ganancia a superar: ');
     ReadLn(ganaciaASuperar);
     Superan(vPatente, vRecaud, ganaciaASuperar);
