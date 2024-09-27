@@ -75,24 +75,6 @@ begin
     Porcentaje:=st;
 end;
 
-procedure BuscarPatente(vPatente:TVPatentes; var indice:byte;patente:ST7);
-var
-    pos,i:byte;
-begin
-    pos:=0;
-    for i:=1 to indice do
-    begin
-        if vPatente[i] = patente then
-            pos:=i;
-    end;
-
-    if pos = 0 then
-        indice := indice + 1
-    else
-        indice := pos;
-end;
-
-
 function MostrarPatente(vPatentes:TVPatentes;vCliente:TVCliente;vTipoCereal:TVTipoCereal;vToneladas: TVToneladas;indice:byte;patente:ST7):string;
 var
     pos,i:byte;
@@ -198,7 +180,7 @@ begin
     Rewrite(arch2);
 
     RellenarArreglo(vCereales);
-    contClientes:=1;
+    contClientes:=0;
     pos:=0;
     while not eof(arch) do
     begin

@@ -6,9 +6,6 @@ Ejemplos:
     -7 6 -1 0 2 4 -8 -7 3 1 -24 6 7 0 9 -> debe escribir : 6 3 2
     7 6 -1 0 2 4 -8 -7 3 1 -24 6 7 0 9 -8 -> debe escribir : 3 2 7.33 *)
 
-uses
-    SysUtils;
-
 var
     arch: text;
     contNumeros, numero, sumaNumeros: integer;
@@ -53,7 +50,7 @@ begin
             if (not eoln(arch)) or (numero<0) then
                 begin
                     promedio := (sumaNumeros/contNumeros);
-                    promedioST := FloatToStr(promedio);
+                    str(promedio:0:2,promedioST);
                     cadenaNum := cadenaNum + ' ' + promedioST;
                 end;
                 

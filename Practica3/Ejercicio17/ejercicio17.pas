@@ -25,7 +25,7 @@ var
 begin
     writeln('Ingrese el nombre del cliente: ');
     readln(cliente);
-    
+    contCliSoloOfer:=0;
     while cliente <> '*****' do
         begin
             contArticulosOferta := 0;

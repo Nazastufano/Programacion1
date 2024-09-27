@@ -46,6 +46,8 @@ begin
     //b)
     assign(arch2, 'datos2.TXT');
     reset(arch2);
+    contAA:=0;
+    contAlumnos:=0;
     while NOT eof(arch2) do
         begin
             readln(arch2, nombre);

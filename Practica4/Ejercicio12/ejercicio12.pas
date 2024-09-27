@@ -5,50 +5,50 @@ dos anteriores: 1, 1, 2, 3, 5, 8,13, 21…
 Desarrolle un programa que lea N cotas enteras positivas, y para cada una de ellas genere y muestre los
 términos de la sucesión hasta superar la cota dada.*)
 
-uses
-    SysUtils;
+function Encadenado(num:word): string;
+var
+    s:string;
+begin
+    str(num, s);
+    Encadenado:= s + ', ';
+end;
 
-function Fibonacci(cota:integer): string;
-    var
-        a, b, c:integer;
-        resultado: string;
 
-    begin
-        a:=1;
-        b:=1;
-        resultado := '';
+procedure Fibonacci(val:word);
+var
+    n1,n2,aux:word;
+    cad:string;
+begin
+    n1:= 1;
+    n2:= 1;
+    cad:= '';
+    cad := cad + Encadenado(n1) + Encadenado(n2);
 
-        while c <= cota do
-            begin
-                a := b;
-                b := c;
-                c := a + b;
-                if c <= cota then
-                    resultado := resultado + IntToStr(c) + ', '
-                else
-                    begin
-                        resultado := resultado + IntToStr(c) + '.';
-                    end;
-            end;
-        Fibonacci := resultado;
-    end;
+    repeat
+        aux := n1; 
+        n1 := n2; 
+        n2 := aux + n1;
+        cad := cad + Encadenado(n2);
+    Until n2 > val;
+
+    cad := copy(cad,1,Length(cad)-2);
+    WriteLn(cad);
+end;
 
 var
-    i, cotas, cota: integer;
-
+    cotas:word;
+    respuesta:char;
 begin
-    repeat
-        writeln('Cuantas cotas desea ingresar? ');
-        readln(cotas);    
-    until (cotas>0);
-
-    for i := 1 to cotas do
-        begin
-            repeat
-                writeln('Ingrese el numero a alcanzar: ');
-                readln(cota);
-            until (cota>0);
-            
-            writeln(Fibonacci(cota));
-        end;    
+    while respuesta <> 'N' do
+    begin
+        repeat
+            WriteLn('Ingrese la cota a superar: ');
+            ReadLn(cotas);
+        until cotas > 1;
+        Fibonacci(cotas);  
+        
+        WriteLn('Desea seguir ingresando valores? (S/N)');
+        ReadLn(respuesta);
+        respuesta := upcase(respuesta);
+    end;
 end.

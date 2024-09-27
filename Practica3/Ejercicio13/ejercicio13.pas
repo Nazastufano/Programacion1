@@ -26,4 +26,4 @@ begin
     until (tipo='P') or (Tipo='F') or (Tipo='A');
 
     //Conclusion: puede darse que el primer readln de una letra distinta de P,F y A y el repeat se ejecute igualmente, esto no pasaría en el while
-end;
+end.

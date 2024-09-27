@@ -1,1 +1,0 @@
-X = 123 -> Los clientes que transportaron mas de 123 toneladas son: [Ariel, carlos, roberto]

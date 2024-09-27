@@ -16,7 +16,7 @@ var
     archEntrada, archSalida:text;
     caracter, caracterAnt:char;
     palabra: string;
-    i: byte;
+    i,num: byte;
 
 begin
     Assign(archEntrada, 'datos.TXT');
@@ -51,7 +51,8 @@ begin
 
                             if caracter in ['1'..'9'] then                            
                                 Begin
-                                    For i:=1 To StrToInt(caracter) Do
+                                    Val(caracter,num);
+                                    For i:=1 To num Do
                                         palabra := palabra + caracterAnt;
                                 End
                             else 

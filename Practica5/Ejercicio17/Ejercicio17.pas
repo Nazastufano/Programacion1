@@ -15,7 +15,7 @@ type
     TVNombres = array[1..N] of ST30;
     TVNum = array[1..N] of word;
 
-procedure OrdenarArreglo(var vPacientes:TVNombres;pos:byte);
+procedure OrdenarArreglo(var vPacientes:TVNombres; pos:byte);
 var
     i,tope,K:Byte;
     vecAux:TVNombres;
@@ -67,6 +67,7 @@ begin
         vPacientes[contPacientes]:=nombre;
         vNumHistCli[contPacientes]:=num;
     end;
+    Close(arch);
     OrdenarArreglo(vPacientes,contPacientes);
     MostrarArreglo(vPacientes,contPacientes);
 end.

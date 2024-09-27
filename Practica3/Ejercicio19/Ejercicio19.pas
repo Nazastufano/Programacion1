@@ -8,12 +8,9 @@ Ejemplo:
     2 3 4 -7 4 5 -5 7 5 3 9 8 7 -1 3 1 -2 -> 5 9 3
     2 3 4 -7 4 5 -5 7 5 3 9 8 7 -1 3 1 -> 5 9 *)
 
-uses
-    SysUtils;
-
 var
     arch: text;
-    cadenaMax: string;
+    cadenaMax,aux: string;
     numeroMax, numero: integer;
 
 begin
@@ -41,7 +38,8 @@ begin
 
             if numero < 0 then
                 begin
-                    cadenaMax := cadenaMax + ' ' + IntToStr(numeroMax);
+                    str(numeroMax,aux);
+                    cadenaMax := cadenaMax + ' ' + aux;
                     numeroMax := 0;
                 end;
         
