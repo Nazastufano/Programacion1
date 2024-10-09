@@ -1,1 +1,0 @@
-length(matr[1])-1

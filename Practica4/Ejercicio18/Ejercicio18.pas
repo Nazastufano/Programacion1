@@ -24,7 +24,7 @@ begin
     WriteLn('Ingrese 2 numeros separados por un enter: ');
     readln(numero1, numero2);
     if MCD(numero1,numero2) = 0 then
-        WriteLn('No existe maximo comun divisior entre: ', numero1,' y ', numero2)
+        WriteLn('No existe maximo comun divisor entre: ', numero1,' y ', numero2)
     else
-        WriteLn('El maximo comun divisior entre: ', numero1,' y ', numero2,' es: ', MCD(numero1,numero2));    
+        WriteLn('El maximo comun divisor entre: ', numero1,' y ', numero2,' es: ', MCD(numero1,numero2));    
 end.

@@ -10,55 +10,98 @@ b) Por cada alumno determinar su situación:
 y generar un arreglo con los nombres de aquellos que promocionaron. *)
 
 const
-    K =3;
-    N = 3;
-
+    N = 10;
+    M = 3;
 type
-    ST10 = string[10];
-    TV = array[1..N] of ST10;
-    TM = array[1..N,1..K] of integer;
+    TV = array[1..N] of string;
+    TM = array[1..N,1..M] of byte;
+
+procedure ListaAprobados(vecNom:TV;matr:TM;cantAlumnos:byte);
 var
-    arch:text;
-    matr:TM;
-    vec:TV;
-
-procedure RellenarMatriz(matr: TM); //Rellena la matriz con 0
-    var
-        i,j:integer;
-    begin
-        for i := 1 to N do
-            begin
-                for j := 1 to K do
-                    matr[i,j] := 0;
-            end;
-    end;
-procedure GenerarMatriz(var arch:text; var vec:TV; var matr:TM);
-    var
-        nombre:ST10;
-        nota, contAlumnos, contParciales:integer;
-    begin
-        assign(arch, 'datos.TXT');
-        reset(arch);
-        
-        contParciales:=0;
-        contAlumnos:=0;
-
-        readln(arch, nombre);
-        vec[1]:= nombre;
-        writeln(vec[1]);
-        
-        while not eof(arch) do
-            begin
-                read(arch, nota);
-
-                contAlumnos:= contAlumnos + 1;
-                contParciales:= contParciales + 1;
-                
-                matr[contAlumnos,contParciales]:= nota;
-                writeln(matr[contAlumnos,contParciales]);
-            end;
-    end;
+    i,j,pos:byte;
+    apruebaTodos:Boolean;
+    vecAux:TV;
 begin
-    GenerarMatriz(arch, vec, matr);
+    pos:=0;    
+    for i:=1 to cantAlumnos do
+    begin
+        apruebaTodos := true;
 
+        for j:=1 to M do
+        begin
+            if matr[i,j]<5 then
+                apruebaTodos:=false;
+        end;
+        
+        if apruebaTodos then
+        begin
+            pos:=pos+1;
+            vecAux[pos]:=vecNom[i];
+        end;
+    end;
+    WriteLn('La lista de alumnos que aprobaron los ', M, ' parciales son: ');
+    for i:=1 to pos do
+        Write(vecAux[i],'. ');
+    WriteLn();
+end;
+
+procedure NotaFinal(vecNom:TV;matr: TM;cantAlumnos:byte);
+var
+    i,j,suma,pos:byte;
+    prom:real;
+    vecAux:TV;
+begin
+    pos:=0;
+    for i:=1 to cantAlumnos do
+    begin
+        suma:=0;
+        for j:=1 to M do
+        begin
+            suma:= suma + matr[i,j];
+        end;
+        prom:= suma/M;
+        if suma/M>=7 then
+            begin
+                pos:= pos+ 1;
+                vecAux[pos]:= vecNom[i];
+                WriteLn('El alumno: ', vecNom[i],' ha promocionado con promedio: ', prom:0:2);
+            end
+        else    
+            if (prom>=5) and (matr[i,j]>=5) then
+                WriteLn('El alumno: ', vecNom[i],' ha habilitado con promedio: ', prom:0:2)
+            else
+                WriteLn('El alumno: ', vecNom[i],' ha desaprobado con promedio: ', prom:0:2)
+    end;
+
+    WriteLn('La lista de alumnos que promocionaron son: ');
+    for i:=1 to pos do
+        Write(vecAux[i],'. ');
+end;
+
+var
+    arch:Text;
+    matr: TM;
+    vecNom:TV;
+    nombre:string;
+    nota,i,cantAlumnos:byte;
+begin
+    Assign(arch,'datos.TXT');
+    Reset(arch);
+    cantAlumnos:=0;
+    while Not Eof(arch) do
+    begin
+        cantAlumnos := cantAlumnos + 1;
+        ReadLn(arch,nombre);
+        vecNom[cantAlumnos]:=nombre;
+        for i:=1 to M do
+        begin
+            read(arch,nota);
+            matr[cantAlumnos,i]:= nota;
+        end;
+        ReadLn(arch);
+    end;
+    Close(arch);
+
+    ListaAprobados(vecNom,matr,cantAlumnos);
+    NotaFinal(vecNom,matr,cantAlumnos);
 end.

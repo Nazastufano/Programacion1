@@ -1,4 +1,4 @@
-program Ejercicio5;
+Program Ejercicio5;
 
 (*Ej 5) Una Tarjeta de Crédito tiene información de las compras de sus N 
 clientes en un archivo y en cada línea se almacenó:
@@ -16,249 +16,174 @@ Calcular e Informar:
     c) Promedio de compra por cliente. 
     d) Número de cliente que más consumió.
     e) Cuántos clientes no registraron compras en algún rubro. *)
-
-const
-    N=4;
-
-type
-    TVNom = array[1..N] of string;
-    TM = array[1..N,1..4] of integer;
-    TV = array[1..4] of integer;
-
-var 
-    NroCli:TVNom;
-    NroDeCompras: TV;
-    Compras:TM;
     
-function EstaNombre(vecNom: TVNom;nom:string):byte;
+const
+    N = 10;
+type
+    TV = array[1..N] of word;
+    TM = array[1..N,1..4] of real;
+
+procedure InicializarArrayWord(var vec:TV);
+var
+    i:byte;
+begin
+    for i:=1 to N do
+        vec[i]:=0;
+end;
+
+procedure InicializarMatriz(var matr:TM);
+var
+    i,j:byte;
+begin
+    for i:=1 to N do
+        for j:=1 to 4 do
+            matr[i,j]:=0;
+end;
+
+function Busqueda(NroCli:TV; numCli:word;contClientes:byte):byte;
 var
     pos,i:byte;
 begin
     pos:=0;
-    for i := 1 to N do
-        begin
-            if vecNom[i] = nom then
-                pos:= i;    
-        end;
-
-    EstaNombre:= pos;
-end;
-
-procedure MostrarMatriz(var matr: TM);
-    var
-        i,j:integer;
+    for i:=1 to contClientes do
     begin
-        write('|');
-        for i := 1 to 4 do
-            write(i:4, '|');   
-        writeln();
-        for i := 1 to N do
-            begin
-                write('|');
-                for j := 1 to 4 do
-                begin
-                    write(matr[i,j]:4, '|');
-                end;
-                writeln();
-            end;
-    end;
-//a))
-procedure MostrarCompras(vec:TV); //Genera el arreglo con las compras
-    var
-        i:integer;
-    begin
-        writeln('(1=Supermercado, 2=Combustible, 3=Indumentaria, 4=Otros)');
-        for i := 1 to 4 do
-            begin
-                if i=1 then
-                    write('(');
-
-                if (i<>N) then
-                    write(vec[i], ', ')
-                else
-                    begin
-                        write(vec[i], ')');      
-                    end;
-            end;
+        if numCli = NroCli[i] then
+            pos:=i;
     end;
 
-procedure MostrarNombres(vec:TVNom; largo:byte);
-    var
-        i:integer;
-    begin
-        for i := 1 to largo do
-            begin
-                if i=1 then
-                    write('(');
-
-                if (i<>largo) then
-                    write(vec[i], ', ')
-                else
-                    begin
-                        write(vec[i], ')');      
-                    end;
-            end;
+    if pos=0 then
+        Busqueda:= contClientes+1
+    else
+        Busqueda:=pos;
 end;
 
-//b) Listado con los clientes en los cuales el monto en 
-//Supermercado superó a Indumentaria
-procedure SuperaIndu(vec:TVNom; matr:TM);
+procedure TotalCompras(vec:TV);
 var
-    vecNombres: TVNom;
-    i,posicion: byte;
+    i:byte;
 begin
-    posicion:= 0;
-    for i := 1 to N do
-        if matr[i,1] > matr[i,3] then
+    for i:=1 to 4 do
+    begin
+        Write('La cantidad de compras en ');
+        case i of
+        1:WriteLn('Supermercado son ', vec[i]);
+        2:WriteLn('Combustible son ', vec[i]);
+        3:WriteLn('Indumentaria son ', vec[i]);
+        4:WriteLn('Otros son ', vec[i]);
+        end;
+    end;
+end;
+//  b) Listado con los clientes en los cuales el monto en Supermercado superó a Indumentaria
+procedure SuperanIndu(nroCli:TV;matr:TM;contClientes:byte);
+var
+    i,pos:byte;
+    vecAux:TV;
+begin
+    pos:=0;
+    for i:=1 to contClientes do
+    begin
+        if (matr[i,1]>matr[i,3]) and (matr[i,3]<>0) then
             begin
-                posicion:= posicion +1;
-                vecNombres[posicion]:= vec[i];
+                pos:=pos+1;
+                vecAux[pos]:=nroCli[i];
             end;
+    end;
+    WriteLn('Los clientes en los cuales el monto en Supermercado ha superado a Indumentaria son: ');
+    for i:=1 to pos do
+        Write(vecAux[i],'. ');
     
-    MostrarNombres(vecNombres, posicion);
+    WriteLn();
 end;
-//c)
-procedure CalcularPromedio(vec:TVNom; matr:TM);
-var
-    i,j, contCompras:byte;
-    total: word;
 
-begin
-    for i := 1 to N do
-        begin
-            contCompras:=0;
-            total:= 0;
-
-            for j := 1 to 4 do
-                begin
-                    if matr[i,j]<>0 then
-                        begin
-                            contCompras:= contCompras +1;
-                            total := total + matr[i,j];
-                        end;
-                end;
-            if contCompras<>0 then
-                begin
-                    writeln('El promedio de compras del cliente: ', vec[i], ' es de: ', (total/contCompras):0:2);
-                end;
-        end;
-end;
-//d)
-procedure MasConsumo(vec:TVNom;matr:TM);
+procedure Promedio(NroCli,contComprasPorCli:TV;matr:TM;contClientes:byte);
 var
     i,j:byte;
-    nombreMasGasta: string;
-    masGasta,total:word;
+    acumMonto:real;
 begin
-    nombreMasGasta:= vec[1];
-    for i := 1 to N do
-        begin
-            total:=0;
-            for j := 1 to 4 do
-                begin
-                    total:= total + matr[i,j];    
-                end;
-
-            if i=1 then
-                masGasta:= total;
-
-            if total>masGasta then
-                begin
-                    nombreMasGasta:= vec[i];    
-                    masGasta:= total;
-                end;
-                
-        end;
-    writeln('El cliente que mas gasta es: ', nombreMasGasta);
-end;
-
-//e)
-procedure noRegistranCompras(vec:TVNom;matr:TM);
-var
-    i,j, contCeros:byte;
-    noCompra:boolean;
-begin
-    contCeros:=0;
-    for i := 1 to N do
-        begin
-            noCompra:=false;
-            for j := 1 to 4 do
-                begin
-                    if matr[i,j]=0 then
-                        begin
-                            noCompra:=true;
-                        end;
-                end;
-            
-            if noCompra then
-                contCeros:= contCeros +1;
-        end;
-    
-
-    writeln('La cantidad de clientes que no registraron compras es de: ',contCeros);
-end;
-
-procedure LlenarMatricez(var vec:TVNom; var matr:TM; var vecCom: TV);
-var
-    arch:text;
-    aux:char;
-    nombre:string;
-    posicion,tipoCompra,contClientes: byte;
-    precio:word;
-
-begin
-    assign(arch, 'datos.TXT');
-    reset(arch);
-
-    contClientes := 0;
-
-    while not eof(arch) do
+    for i:=1 to contClientes do
     begin
-        nombre:= '';
-        read(arch, aux);
-
-        while (aux <> ' ') do
+        acumMonto := 0;
+        for j:=1 to 4 do
         begin
-            nombre:= nombre + aux;
-            read(arch, aux);
+            acumMonto:=acumMonto+matr[i,j];
         end;
-
-        read(arch, tipoCompra, precio);
-
-        posicion:= EstaNombre(vec, nombre);
-        
-        vecCom[tipoCompra] := vecCom[tipoCompra] + 1;
-
-        if posicion <> 0 then
-            matr[posicion, tipoCompra]:= matr[posicion, tipoCompra] + precio
-        else
-            begin
-                contClientes := contClientes + 1;
-                vec[contClientes]:= nombre;
-                matr[contClientes, tipoCompra]:= precio;
-            end;
-
-        readln(arch);
+        WriteLn('El promedio del cliente: ', NroCli[i], ' es: ', (acumMonto/contComprasPorCli[i]):0:2)
     end;
 end;
 
+function MasConsume(NroCli:TV;matr:TM;contClientes:byte):word;
+var
+    i,j,pos:byte;
+    acum,mayorConsumo:real;
+    numMayorConsumo:word;
 begin
-    LlenarMatricez(NroCli, Compras, NroDeCompras);
+    mayorConsumo:=0;
+    for i:=1 to contClientes do
+    begin
+        acum:=0;
+        for j:=1 to 4 do
+        begin
+            acum:= acum + matr[i,j];
+        end;
+        if acum>mayorConsumo then
+            begin
+                mayorConsumo:=acum;
+                pos:=i;
+            end;
+    end;
+    MasConsume:=pos;
+end;
 
-    MostrarMatriz(Compras);
+function NoRegistranCompras(matr:TM;contClientes:byte):byte;
+var
+    i,j,cont:byte;
+begin
+    cont:=0;
     
-    writeln();
-    MostrarCompras(NroDeCompras);
+    for i:=1 to contClientes do
+    begin
+        j := 0;
+        repeat
+            j:=j+1;
+            If matr[i,j]=0 Then
+                cont := cont+1;
+        until (matr[i,j] = 0) or (j=4);
+    end;
+    NoRegistranCompras:=cont;
+end;
 
-    writeln();
-    SuperaIndu(NroCli,Compras);
-
-    writeln();
-    CalcularPromedio(NroCli,Compras);
+var
+    arch:text;
+    compras:TM;
+    NroCli,contCompras,contComprasPorCli:TV;
+    numCli:word;
+    tipoCom,contClientes,indice:byte;
+    monto:real;
     
-    writeln();
-    MasConsumo(NroCli,Compras);
+begin
+    Assign(arch,'datos.TXT');
+    reset(arch);
+    InicializarArrayWord(contCompras);
+    InicializarArrayWord(contComprasPorCli);
+    InicializarMatriz(compras);
+    contClientes:=0;
+    while not eof(arch) do
+    begin
+        ReadLn(arch,numCli,tipoCom,monto);
+        indice:= Busqueda(nroCli,numCli,contClientes);
+        
+        NroCli[indice]:= numCli;
+        contCompras[tipoCom]:= contCompras[tipoCom] +1;
+        contComprasPorCli[indice]:= contComprasPorCli[indice] +1;
+        compras[indice,tipoCom]:=compras[indice,tipoCom] + monto;
 
-    writeln();
-    noRegistranCompras(NroCli,Compras);
+        if indice>contClientes then
+            contClientes:=indice;
+    end;
+    Close(arch);
+    TotalCompras(contCompras);
+    
+    SuperanIndu(NroCli,compras,contClientes);
+    Promedio(NroCli,contComprasPorCli,compras,contClientes);
+    WriteLn('El cliente que mas ha consumido es: ', NroCli[MasConsume(NroCli,compras,contClientes)]);
+    WriteLn('El numero de clientes que no registraron compras es: ', NoRegistranCompras(compras,contClientes));
 end.

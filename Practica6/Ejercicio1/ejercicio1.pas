@@ -8,151 +8,120 @@ columna no tiene impares.
 c) Dada una columna X, ingresada por el usuario, hallar el promedio de sus elementos.*)
 
 type
-    TM = array of array of integer;
-    TV = array of integer;
+    TMat = array[1..10, 1..10] of integer;
+
+procedure MostrarMatriz(matr:TMat;n,m:byte);
 var
-    arch: text;
-    n, m: integer;
-    matr: TM;    
-    vecMaximos, vecImpares:TV;
-
-procedure RellenarMatriz(matr: TM); //Rellena la matriz con 0
-    var
-        i,j:integer;
+    i,j:byte;
+begin
+    for i:= 1 to N do
     begin
-        for i := 0 to n-1 do
-            begin
-                for j := 0 to m-1 do
-                    matr[i,j] := 0;
-            end;
+        for j:=1 to M do
+        begin
+            Write(matr[i,j],' ');
+        end;
+        Writeln();
     end;
+end;
 
-procedure MostrarArreglo(vec:TV); //Genera el arreglo de los maximos
-    var
-        i:integer;
+procedure MaxPorFila(matr:TMat;n,m:byte);
+var
+    i,j:byte;
+    vecAux: array[1..10] of integer;
+    max:integer;
+begin
+    for i:= 1 to N do
     begin
-        for i := 0 to (Length(vec)-1) do
-            begin
-                if i=0 then
-                    write('(');
-
-                if (i<>Length(vec)-1) then
-                    write(vec[i], ', ')
-                else
-                    begin
-                        write(vec[i], ')');      
-                    end;
-            end;
+        max:= matr[i,1];
+        for j:=1 to M do
+        begin
+            if max<matr[i,j] then
+                max:=matr[i,j];
+        end;
+        vecAux[i]:=max;
     end;
-
-procedure ArregloMaximo(var vec:TV; var matr:TM); //Revisa la matriz y busca los maximos de cada fila
-    var
-        valorMax, valor, i, j:integer;
+    
+    WriteLn('Los maximos de cada fila son: ');
+    for i:=1 to N do
     begin
-        setLength(vec, n);
-        for i := 0 to n-1 do
-            begin
-                valorMax:= matr[i,1];
-                for j := 0 to m-1 do
-                    begin
-                        valor := matr[i,j];
-                        if valor>valorMax then
-                            valorMax := valor;
-                    end;
-                vec[i] := valorMax;
-            end;
-
-        MostrarArreglo(vec);
+        Write(vecAux[i], ' ');
     end;
+end;
 
-procedure CrearMatriz(var arch:text; var matr:TM); //Ingresa desde el archivo los valores a la matriz
-    var
-        val,i,j:integer;
+procedure SumaImpares(matr:TMat;n,m:byte);
+var
+    i,j,pos:byte;
+    vecAux: array[1..10] of integer;
+    sumatoriaImpares:integer;
+    hayImpar:Boolean;
+begin
+    for i:= 1 to N do
     begin
-        assign(arch, 'datos.TXT');
-        reset(arch);
-
-        read(arch, n);
-        read(arch, m);
-        setLength(matr, n, m);
-        RellenarMatriz(matr);
-
-        for i := 0 to n-1 do
-            begin
-                for j := 0 to m-1 do
-                    begin
-                        read(arch, val);
-                        matr[i,j] := val;
-                    end;
-            end;
-        close(arch);
+        sumatoriaImpares := 0;
+        hayImpar:=false;
+        for j:=1 to M do
+        begin
+            if matr[i,j] mod 2 <> 0 then
+                begin
+                    sumatoriaImpares:=sumatoriaImpares+matr[i,j];
+                    hayImpar:=true;  
+                end;
+        end;
+        if hayImpar then
+        begin
+            pos:=pos+1;
+            vecAux[pos] := sumatoriaImpares;
+        end;
     end;
-
-procedure ArregloImpares(var vec:TV; var matr:TM);
-    var
-        i, j:integer;
-        impar:boolean;
+    WriteLn('La sumatoria de los impares en cada fila es: ');
+    for i:=1 to pos do
     begin
-        setLength(vec, 1);
-        for j := 0 to m-1 do
-            begin
-                impar:= false;
-                for i := 0 to n-1 do
-                    begin
-                        if ((matr[i,j] mod 2) <> 0) then
-                            begin 
-                                vec[j] := vec[j] + matr[i,j];
-                                impar:= true;
-                            end;
-
-                    end;
-                if (impar = true) then
-                    setLength(vec, Length(vec)+1);
-            end;
-        setLength(vec, Length(vec)-1);
-        MostrarArreglo(vec);
+        Write(vecAux[i], ' ');
     end;
+    WriteLn();
+end;
 
-procedure PedirColumna(matr:TM);
-    var
-        i,val, total:integer;
-        promedio:real;
+procedure PromPorColumna(matr:TMat;n,m:byte);
+var
+    i, columna:byte;
+    suma:real;
+begin
+    suma:=0;
+    repeat
+        WriteLn('Ingrese una columna de para sacar el promedio: (1..', m,')');
+        ReadLn(columna);
+    until columna in [1..m];
+
+    for i:= 1 to n do
     begin
-        total:= 0;
-        promedio:= 0;
-        
-        writeln();
-        repeat
-            writeln('Ingrese la columna');
-            readln(val);    
-        until (val>=0) and (val<=m);
-        
-        
-        for i := 0 to n-1 do
-            begin
-                total := total + matr[i, val];
-            end;
-        
-        promedio:=total/m;
-        writeln('El promedio de la columna ingresada desde teclado es: ', promedio:0:2);
+        suma:=suma + matr[i,columna];
     end;
+    
+    WriteLn('El promedio de la columna: ',columna, ' es: ', (suma/n):0:2);
+end;
+
+var
+    arch:Text;
+    num:Integer;
+    i,j,n,m,columna:byte;
+    matr:TMat;
 
 begin
-    CrearMatriz(arch, matr);
-    //a)
-    ArregloMaximo(vecMaximos,matr);
-    //b)
-    ArregloImpares(vecImpares,matr);
-    //c)
-    PedirColumna(matr);
-    
-    
-    (*
-    writeln(Length(matr));    
-    writeln(Length(matr[1]));  
+    Assign(arch,'datos.TXT');
+    Reset(arch);
+    ReadLn(arch,n,m);
+    for i:=1 to N do
+    begin
+        for j:=1 to M do
+        begin
+            Read(arch,num);
+            matr[i,j]:=num;
+        end;    
+        ReadLn(arch);
+    end;
+    MostrarMatriz(matr,n,m);
 
-    setLength(matr, Length(matr)+ 1, Length(matr[1])+1);
-    writeln(Length(matr));
-    writeln(Length(matr[1])); 
-    *)
+    MaxPorFila(matr,n,m);
+    SumaImpares(matr,n,m);
+    PromPorColumna(matr,n,m);
 end.
