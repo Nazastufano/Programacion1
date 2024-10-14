@@ -15,29 +15,40 @@ type
 
 procedure BuscarPatente(vPatente:TVecPatente; var indice:byte;patente:ST7);
 var
-    pos,i:byte;
+    i:byte;
 begin
-    pos:=0;
-    for i:=1 to indice do
-    begin
-        if vPatente[i] = patente then
-            pos:=i;
-    end;
+    i:=1;
+    while (i<=indice) and (vPatente[i] <> patente) do
+        i:=i+1;
 
-    if pos = 0 then
+    if i = indice+1 then
         indice := indice + 1
     else
-        indice := pos;
+        indice := i;
 end;
+
+procedure InicializarVecRep(var vec:TVecRepeticion);
+var
+    i:byte;
+begin
+    for i:=1 to N do
+        vec[i]:=0;
+end;
+procedure InicializarVecReca(var vec:TVecRecauda);
+var
+    i:byte;
+begin
+    for i:=1 to N do
+        vec[i]:=0;
+end;
+
 
 procedure PromPorAuto(vPatente:TVecPatente; vRecaud:TVecRecauda; vAcum:TVecRepeticion; indice:byte);
 var
     i:byte;
 begin
     for i:=1 to indice do
-    begin
-        WriteLn('El auto con la patente: ', vPatente[i], '. Y el promedio recaudado es: ',(vRecaud[i]/vAcum[i]):0:2);
-    end;
+        WriteLn('El auto con la patente: ', vPatente[i], '. Y el promedio recaudado es: $',(vRecaud[i]/vAcum[i]):0:2);
 end;
 
 procedure Superan(vPatente:TVecPatente; vRecaud:TVecRecauda; x:real);
@@ -57,9 +68,8 @@ begin
     
     WriteLn('Las patentes que superaron la cantidad de: $', x:0:2);
     for i:=1 to cont do
-    begin
         Write(patentesMasRecaudan[i],' ');
-    end;
+    
     WriteLn();
 end;
 function PatenteMenosRecauda(vPatente:TVecPatente;vRecaud:TVecRecauda):ST7;
@@ -83,7 +93,7 @@ var
     arch:Text;
     patente:ST7;
     ganacia,ganaciaASuperar:real;
-    posAutos,acumAutos,i,cantAutos:byte;
+    posAutos,cantAutos:byte;
     vPatente:TVecPatente;
     vRecaud:TVecRecauda;
     vAcum: TVecRepeticion;
@@ -92,6 +102,8 @@ begin
     Reset(arch);
     posAutos:=0;
     cantAutos:=0;
+    InicializarVecRep(vAcum);
+    InicializarVecReca(vRecaud);
     while Not eof(arch) do
     begin
         ReadLn(arch,patente,ganacia);

@@ -29,7 +29,7 @@ Type
     TVCliente = array[1..N] of ST10;
     TVToneladas = array[1..N] of word;
 
-procedure LlenarArreglo(var clientesSuperan:TVCliente);
+procedure InicializarArregloSt(var clientesSuperan:TVCliente);
 var
     i:byte;
 begin
@@ -39,7 +39,7 @@ begin
     end;
 end;
 
-procedure RellenarArreglo(var vec:TVCereales);
+procedure InicializarArregloWord(var vec:TVCereales);
 var
     i:byte;
 begin
@@ -77,29 +77,25 @@ end;
 
 function MostrarPatente(vPatentes:TVPatentes;vCliente:TVCliente;vTipoCereal:TVTipoCereal;vToneladas: TVToneladas;indice:byte;patente:ST7):string;
 var
-    pos,i:byte;
+    i:byte;
     aux1,palabra,st:string;
 begin
+    i:=1;
+    while (i<=indice) and (vPatentes[i] <> patente) do
+        i:=i+1;
     
-    pos:=0;
-    for i:=1 to indice do
-    begin
-        if vPatentes[i] = patente then
-            pos:=i;
-    end;
-
-    if pos = 0 then
+    if i=indice+1 then
         st:='La patente escrita no existe'
     else
         begin
-            case vTipoCereal[pos] of
+            case vTipoCereal[i] of
             1:palabra:='Trigo';
             2:palabra:='Girasol';
             3:palabra:='Soja';
             4:palabra:='Maiz';
             end;
-            str(vToneladas[pos],aux1);
-            st:= 'La patente: '+  patente +  '. Transporta el tipo de cereal: ' + palabra + '. ' + aux1 + ' toneladas y pertenece al cliente: ' + vCliente[pos];      
+            str(vToneladas[i],aux1);
+            st:= 'La patente: '+  patente +  '. Transporta el tipo de cereal: ' + palabra + '. ' + aux1 + ' toneladas y pertenece al cliente: ' + vCliente[i];
         end;
     MostrarPatente:=st; 
 end;
@@ -164,7 +160,7 @@ var
     cliente:ST10;
     patente:ST7;
     res:char;
-    contClientes,tipoCereal,pos,i:byte;
+    contClientes,tipoCereal,pos:byte;
     toneladas,toneladasASuperar:word;
     vCereales:TVCereales;
     vPatentes:TVPatentes;
@@ -179,7 +175,7 @@ begin
     Assign(arch2,'salida.TXT');
     Rewrite(arch2);
 
-    RellenarArreglo(vCereales);
+    InicializarArregloWord(vCereales);
     contClientes:=0;
     pos:=0;
     while not eof(arch) do
@@ -220,7 +216,7 @@ begin
                 WriteLn('Ingrese el valor a superar: '); //c)
                 ReadLn(toneladasASuperar);
 
-                LlenarArreglo(clientesSuperan);
+                InicializarArregloSt(clientesSuperan);
                 SuperanValor(clientesSuperan,vCliente,vToneladas,pos,contClientes,toneladasASuperar);
                 OrdenarArreglo(clientesSuperan,pos);
 

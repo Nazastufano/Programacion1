@@ -1,0 +1,3 @@
+La patente: AA111AA. Transporta el tipo de cereal: Soja. 100 toneladas y pertenece al cliente: pedro
+La patente escrita no existe
+Los clientes que transportaron mas de 100 toneladas son: [Ariel, carlos, roberto]

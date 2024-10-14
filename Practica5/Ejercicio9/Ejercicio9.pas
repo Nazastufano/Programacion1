@@ -77,6 +77,4 @@ begin
     WriteLn();
     Write('B = ');
     MostrarArreglo(vecB,cant);
-
-    
 end.

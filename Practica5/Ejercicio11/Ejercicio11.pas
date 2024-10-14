@@ -90,16 +90,13 @@ end;
 
 procedure PuntajesPorNombre(pri,seg:Tvec;nombres:TVecNom;nombre:ST10);
 var
-    i,pos:byte;
+    i:byte;
 begin
-
-    for i:=1 to N do
-    begin
-        if UpCase(nombres[i]) = Upcase(nombre) then
-            pos:=i;
-    end;
-
-    WriteLn('El puntaje del atleta: ', nombre, '. En el primer lanzamiento es: ', pri[pos],'. Y en el segundo: ',seg[pos]);
+    i:=1;
+    while (i<=N) and (UpCase(nombres[i]) <> Upcase(nombre)) do
+        i:=i+1;
+        
+    WriteLn('El puntaje del atleta: ', nombre, '. En el primer lanzamiento es: ', pri[i],'. Y en el segundo: ',seg[i]);
 end;
 
 procedure SemiFinales(pri,seg:Tvec;nombres:TVecNom; puntosSuperar:byte);

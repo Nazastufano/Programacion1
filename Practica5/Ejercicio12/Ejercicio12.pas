@@ -37,7 +37,7 @@ procedure MostrarTabla(VClave:TvecClave; VProm:TVecProm; VCar:TVecCar;pos:byte);
 var
     i:Byte;
 begin
-    WriteLn('VClave    VProm  VCar');
+    WriteLn('VClave   VProm  VCar');
     for i:=1 to pos do
     begin
         Write(VClave[i],' ');
@@ -70,16 +70,14 @@ end;
 
 procedure MostrarPorClave(VClave:TvecClave; VProm:TVecProm; VCar:TVecCar; clave:ST15;indice:byte);
 var
-    i,pos:byte;
+    i:byte;
 begin
-    pos:=0;
-    for i:=1 to indice do
-    begin
-        if VClave[i] = clave then
-            pos:=i;
-    end;
-    if pos<>0 then
-        WriteLn('El promedio de la clave ingresada es: ', VProm[pos]:0:0, '. y la letra asociada es: ', VCar[pos])
+    i:=1;
+    while (i<=indice) and (VClave[i] <> clave) do
+        i:=i+1;
+    
+    if i<>indice+1 then
+        WriteLn('El promedio de la clave ingresada es: ', VProm[i]:0:0, '. y la letra asociada es: ', VCar[i])
     else
         WriteLn('No existe clave ingresada');
 end;
@@ -114,7 +112,6 @@ begin
             if contCarEsp>3 then
                 claveInvalida:=True;
         end;
-        WriteLn(clave,',fin');
 
         for i:=1 to 3 do
         begin

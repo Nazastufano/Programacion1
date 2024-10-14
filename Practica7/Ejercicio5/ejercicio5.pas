@@ -1,92 +1,102 @@
 program Ejercicio5;
-
+    
 (*Ej 5) Ingresar N y M y luego los elementos no nulos de una matriz rala por filas (i, j, valor) y almacenar en
 un arreglo de registros.
     a) Mostrar en formato matricial completando los ceros faltantes.
     b) Si es cuadrada, modificarla para obtener la traspuesta. *)
-
-
 type
-    TipoReg = record
-        i,j: byte;
-        valor:integer;
+    TReg = record
+        i,j,valor:byte;
     end;
-    TVReg = array[1..50] of TipoReg;
-    TM = array of array of integer;
+    TVReg = array[1..5] of TReg;
+procedure LlenarVec(var vec:TVReg;var n,m:byte);
+var 
+    i:byte;
+
+begin
+    repeat
+        WriteLn('Ingrese la cantidad de filas y columnas (separados por un enter. Ambos menores que 10): ');
+        ReadLn(N,M);
+    until (N<=10) and(M<=10);
+
+    for i:=1 to 5 do
+    begin
+        repeat
+            WriteLn('Ingrese la posicion i<=N: ');
+            Readln(vec[i].i);
+            WriteLn('Ingrese la posicion j<=M: ');
+            Readln(vec[i].j);
+        until (vec[i].i<=N) and(vec[i].j<=M);
+
+        WriteLn('Ingrese el valor: ');
+        Readln(vec[i].valor);
+    end;
+end;
+
+procedure MostrarMatriz(vec:TVReg;N,M:byte);
+var
+    pos,res,i,j,k:byte;
+begin
+    for i:=1 to N do
+    begin
+        for j:=1 to M do
+        begin
+            res:=0;
+            for k:=1 to 5 do
+            begin
+                if (vec[k].i=i) and (vec[k].j=j) then
+                    begin
+                        res := 1;
+                        pos := k;
+                    end;        
+            end;
+            if res=1 then
+                Write(vec[pos].valor,' ')    
+            else
+                Write('0 ');  
+        end;
+        WriteLn();
+    end;
+end;
+
+//b) Si es cuadrada, modificarla para obtener la traspuesta.
+procedure Transpuesta(vec:TVReg;N,M:byte);
+var
+    pos,res,i,j,k:byte;
+begin
+    for j:=1 to M do
+    begin
+        for i:=1 to N do
+        begin
+            res:=0;
+            for k:=1 to 5 do
+            begin
+                if (vec[k].i=i) and (vec[k].j=j) then
+                     begin
+                        res := 1;
+                        pos := k;
+                    end;        
+            end;
+            if res=1 then
+                Write(vec[pos].valor,' ')    
+            else
+                Write('0 ');  
+        end;
+        WriteLn();
+    end;
+end;
+
 
 var
-    i, j, n, m,contValores: byte;
-    valor: integer;
-    arch:text;
-    vecReg: TVReg;
-    matr: TM;
-
-procedure MostrarMatriz(var matr: TM);
-    var
-        i,j:integer;
-    begin
-        for i := 0 to Length(matr)-1 do
-            begin
-                for j := 0 to Length(matr[1])-1 do
-                begin
-                    write(matr[i,j], ' ');
-                end;
-                writeln();
-            end;
-    end;
-
-procedure LlenarRegistro(var vecReg:TVReg; i:byte; j:byte; valor:integer; contValores:byte);
-    begin
-        vecReg[contValores].i:= i;
-        vecReg[contValores].j:= j;
-        vecReg[contValores].valor:= valor;
-    end;
-
-procedure MatrizTranspuesta(var matr:TM; n:byte; m:byte);
-    var
-        i, j:byte;
-        matr2:TM;
-    begin
-        setLength(matr2, n, m);
-        for i := 0 to n-1 do
-            for j := 0 to m-1 do
-                matr2[j, i] := matr[i, j];
-
-        MostrarMatriz(matr2);
-    end;
-
-procedure LlenarMatriz(vecReg:TVReg; matr:TM; lim:byte);
-    var
-        i, x, y: byte;
-    begin
-        for i := 1 to lim do
-            begin
-                x:=vecReg[i].i-1;
-                y:=vecReg[i].j-1;
-                matr[x, y]:= vecReg[i].valor;
-            end;    
-    end;
- 
+    datosMatrizRala:TVReg;
+    n,m:byte;
 begin
-    assign(arch, 'datos.TXT');
-    reset(arch);
+    LlenarVec(datosMatrizRala,n,m);
+    MostrarMatriz(datosMatrizRala,n,m);
 
-    readln(arch, n, m);
-    
-    setLength(matr, n, m);
-    contValores:=1;
-    while not eof(arch) do 
-        begin
-            readln(arch, i, j, valor);
-            LlenarRegistro(vecReg, i, j, valor, contValores);
-            contValores:=contValores+1;
-        end;
-    close(arch);
-
-    LlenarMatriz(vecReg, matr, contValores);
-        
-    MostrarMatriz(matr);
-
-    if n = m then
-        MatrizTranspuesta(matr, n, m);
+    if N=M then
+    begin
+        WriteLn('La matriz transpuesta es: ');
+        Transpuesta(datosMatrizRala,n,m);
+    end;
 end.
