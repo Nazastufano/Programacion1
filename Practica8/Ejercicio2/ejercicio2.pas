@@ -18,5 +18,5 @@ begin
 end;
 
 begin
-    writeln(funcionDeT(400));
+    WriteLn('El resultado es: ', funcionDeT(400));
 end.

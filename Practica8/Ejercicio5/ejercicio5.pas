@@ -18,88 +18,62 @@ Type
 Const
     a: TV = (5,1,12,8,-1,3,10,9,14,0,15,7);
 
+//a) Calcular e informar la suma de sus elementos.
+function SumaElementos(vec:TV;largo:byte):integer;
+begin
+    if largo = 1 then
+        SumaElementos:=vec[largo]
+    else
+        SumaElementos := vec[largo] + SumaElementos(vec,largo-1)
+end;
+
+//b) Mostrar sus elementos.
+procedure MostrarElementos(vec:TV;largo:byte);
+begin
+    if largo <> 1 then
+        MostrarElementos(vec,largo-1);
+    Write(vec[largo],' ');
+end;
+
+//c) Mostrarlos en orden inverso.
+procedure MostrarElementosInv(vec:TV;largo:byte);
+begin
+    Write(vec[largo],' ');
+    if largo <> 1 then
+        MostrarElementosInv(vec,largo-1);
+end;
+
+//d) Obtener el máximo de sus elementos.
+procedure Maximo(vec:TV;largo:byte;var max:integer);
+begin
+    if largo > 0 then
+        begin
+            Maximo(vec,largo-1,max);
+            if max<vec[largo] then
+                max:=vec[largo];
+        end
+    else
+        max:= 0;
+end;
+
+//e) Obtener el promedio.
+function Promedio(vec:TV;largo:byte):real;
+begin
+    if largo=1 then
+        Promedio:=vec[largo]/N
+    else
+        Promedio:= vec[largo]/N + Promedio(vec,largo-1);
+end;
+
 var
-    valorMaximo:integer;
-    valorPromedio:real;
-
-//a)
-function SumaValores(vec:TV; indice:byte):integer;   
+    max:integer;
 begin
-    if indice <= length(vec) then
-        SumaValores:= SumaValores(vec, indice + 1) + vec[indice]
-    else
-        SumaValores:= 0;
-end;
-
-//b)
-procedure MostrarElementos(vec:TV; indice:byte);
-begin
-    if indice <> N then
-    begin
-        write(vec[indice], ', ');
-        MostrarElementos(vec, indice + 1);
-    end
-    else
-        write(vec[indice], '.');
-end;
-
-//c)
-procedure MostrarElemInvert(vec:TV; indice:byte);
-begin
-    if indice <> 1 then
-    begin
-        write(vec[indice], ', ');
-        MostrarElemInvert(vec, indice - 1);
-    end
-    else
-        write(vec[indice], '.');
-end;
-
-//d)
-procedure Maximo(vec:TV; indice:integer; var max:integer);
-begin
-    if indice = N then
-        max := vec[1];
-    
-    if indice>0 then
-        begin
-            if max<vec[indice] then
-                max:=vec[indice];
-            
-            Maximo(vec,indice-1,max);  
-        end;
-    if indice=1 then
-        writeln('El maximo es: ', max);
-end;
-
-//e)
-procedure Promedio(vec:TV; indice:integer; var prom:real);
-begin
-    if indice>0 then
-        begin
-            prom:= prom + vec[indice];
-            Promedio(vec,indice-1,prom);  
-        end;
-
-    if indice=1 then
-        begin
-            prom := prom/N;
-            writeln('El promedio es: ', prom:0:2);    
-        end;
-        
-end;
-
-begin
-    valorPromedio:=0;
-
-    writeln(SumaValores(a,1));
-    MostrarElementos(a,1);
-    writeln();
-    
-    MostrarElemInvert(a,N);
-    writeln();
-    
-    Maximo(a,N,valorMaximo);
-
-    Promedio(a,N,valorPromedio);
+    WriteLn('La suma de los elementos es: ', SumaElementos(a,Length(a)));
+    MostrarElementos(a,Length(a));
+    WriteLn();
+    MostrarElementosInv(a,Length(a));
+    WriteLn();
+    Maximo(a,Length(a),max);
+    WriteLn('El maximo es: ', max);
+    Writeln('El promedio es de los elementos: ', Promedio(a,Length(a)):0:2);
 end.

@@ -1,88 +1,95 @@
-program Ejercicio6;
+Program Ejercicio6;
 
-(*Ej 6) Idem ejercicio 5, leer dos matrices y calcular 
-la matriz resultante de la suma de ambas. *)
-
+(*Ej 6) Idem ejercicio 5, leer dos matrices y calcular la matriz resultante de la suma de ambas.*)
+const   
+    datos = 3;
 type
-    TipoReg = record
-        i,j: byte;
-        valor:integer;
+    TReg = record
+        i,j,valor:byte;
     end;
-    TVReg = array[1..50] of TipoReg;
-    TM = array of array of integer;
-var
-    i, j, n, m,contValores: byte;
-    valor: integer;
-    arch:text;
-    vecReg: TVReg;
-    matr: TM;
+    TVReg = array[1..datos] of TReg;
 
-
-procedure MostrarMatriz(var matr: TM);
-    var
-        i,j:integer;
-    begin
-        for i := 0 to Length(matr)-1 do
-            begin
-                for j := 0 to Length(matr[1])-1 do
-                begin
-                    write(matr[i,j], ' ');
-                end;
-                writeln();
-            end;
-    end;
-
-
-procedure LlenarRegistro(var vecReg:TVReg; i:byte; j:byte; valor:integer; contValores:byte);
-    begin
-        vecReg[contValores].i:= i;
-        vecReg[contValores].j:= j;
-        vecReg[contValores].valor:= valor;
-    end;
-
-procedure LlenarMatriz(vecReg:TVReg; matr:TM; lim:byte);
-var
-    i, x,y: byte;
+procedure tamanioMatriz(var n,m:byte);
 begin
-    for i := 1 to lim do
+    repeat
+        WriteLn('Ingrese la cantidad de filas y columnas (separados por un enter. Ambos menores que 10): ');
+        ReadLn(N,M);
+    until (N<=10) and(M<=10);
+end;
+
+procedure LlenarVec(var vec:TVReg;n,m:byte);
+var 
+    i:byte;
+
+begin
+    for i:=1 to datos do
+    begin
+        repeat
+            WriteLn('Ingrese la posicion i<=N: ');
+            Readln(vec[i].i);
+            WriteLn('Ingrese la posicion j<=M: ');
+            Readln(vec[i].j);
+        until (vec[i].i<=N) and(vec[i].j<=M);
+
+        WriteLn('Ingrese el valor: ');
+        Readln(vec[i].valor);
+    end;
+end;
+
+procedure MostrarMatriz(vecAux:array of TReg;N,M,pos:byte);
+var
+    i,j,k:byte;
+begin
+    for i:=1 to N do
+    begin
+        for j:=1 to M do
         begin
-            x:=vecReg[i].i-1;
-            y:=vecReg[i].j-1;
-            matr[x, y]:= vecReg[i].valor;
-        end;    
-end;
-
-procedure SumaMatrices(matr:TM;matr2:TM;n:byte;m:byte);
-var
-    i,j:byte;
-    matrSuma:TM;
-begin
-    for i := 0 to n-1 do
-        for j := 0 to m-1 do
-            matrSuma[i,j]:= matr[i,j] + matr2[i,j];
-    
-    MostrarMatriz(matrSuma);
-end;
-
-begin
-    assign(arch, 'datos.TXT');
-    reset(arch);
-
-    readln(arch, n, m);
+            k:=0;
+            while (k<=pos) and ((vecAux[k].i<>i) or (vecAux[k].j<>j)) do
+                k:=k+1;
         
-    setLength(matr, n, m);
-    contValores:=1;
-    while not eof(arch) do 
-        begin
-            readln(arch, i, j, valor);
-            LlenarRegistro(vecReg, i, j, valor, contValores);
-            contValores:=contValores+1;
+            if k <> pos+1 then
+                Write(vecAux[k].valor,' ')    
+            else
+                Write('0 ');  
         end;
-    close(arch);
+        WriteLn();
+    end;
+end;
 
-    LlenarMatriz(vecReg, matr, contValores);
+procedure SumarMatrices(vec,vec2:TVReg;n,m:byte);
+var
+    i,j,k,pos:byte;
+    vecAux: array[1..6] of TReg;
+begin
+    for i:=1 to datos do
+        vecAux[i]:=vec[i];
 
+    pos:=datos;
+    for j := 1 to datos do
+    begin
+        k:=0;
+        while (k<=datos) and ((vecAux[k].i<>vec2[j].i) or (vecAux[k].j<>vec2[j].j)) do
+            k:=k+1;
         
-    SumaMatrices(matr, matr2, n, m);
+        if k = datos + 1 then
+            begin
+                pos:=pos+1;
+                vecAux[pos] := vec2[j];
+            end
+        else
+            vecAux[k].valor := vecAux[k].valor + vec2[j].valor;
+    end;
 
+    MostrarMatriz(vecAux,n,m,pos);
+end;
+
+var
+    datosMatrizRala,datosMatrizRala2:TVReg;
+    n,m:byte;
+begin
+    tamanioMatriz(n,m);
+    LlenarVec(datosMatrizRala,n,m);
+    LlenarVec(datosMatrizRala2,n,m);
+    SumarMatrices(datosMatrizRala,datosMatrizRala2,n,m);
 end.

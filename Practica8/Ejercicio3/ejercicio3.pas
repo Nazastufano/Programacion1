@@ -30,10 +30,5 @@ begin
     writeln(confuso(2, 17));
     writeln(confuso(4, 25));
     
-    //b)
-    (*
-           {        0            si b = 0
-    f(a,b)={    f(2a, b/2)       si b es par
-           { a + f(2a, (b-1)/2)  si b es impar
-    *)
+    //b) La funcion matematica que representa confuso es la multiplicacion a*b
 end.

@@ -4,11 +4,13 @@ program Ejercicio5;
 un arreglo de registros.
     a) Mostrar en formato matricial completando los ceros faltantes.
     b) Si es cuadrada, modificarla para obtener la traspuesta. *)
+const
+    datos = 3;
 type
     TReg = record
         i,j,valor:byte;
     end;
-    TVReg = array[1..5] of TReg;
+    TVReg = array[1..datos] of TReg;
 procedure LlenarVec(var vec:TVReg;var n,m:byte);
 var 
     i:byte;
@@ -19,7 +21,7 @@ begin
         ReadLn(N,M);
     until (N<=10) and(M<=10);
 
-    for i:=1 to 5 do
+    for i:=1 to datos do
     begin
         repeat
             WriteLn('Ingrese la posicion i<=N: ');
@@ -35,25 +37,20 @@ end;
 
 procedure MostrarMatriz(vec:TVReg;N,M:byte);
 var
-    pos,res,i,j,k:byte;
+    i,j,k:byte;
 begin
     for i:=1 to N do
     begin
         for j:=1 to M do
         begin
-            res:=0;
-            for k:=1 to 5 do
-            begin
-                if (vec[k].i=i) and (vec[k].j=j) then
-                    begin
-                        res := 1;
-                        pos := k;
-                    end;        
-            end;
-            if res=1 then
-                Write(vec[pos].valor,' ')    
+            k:=0;
+            while (k<=datos) and ((vec[k].i<>i) or (vec[k].j<>j)) do
+                k:=k+1;
+        
+            if k <> datos+1 then
+                Write(vec[k].valor,' ')    
             else
-                Write('0 ');  
+                Write('0 '); 
         end;
         WriteLn();
     end;
@@ -62,23 +59,18 @@ end;
 //b) Si es cuadrada, modificarla para obtener la traspuesta.
 procedure Transpuesta(vec:TVReg;N,M:byte);
 var
-    pos,res,i,j,k:byte;
+    i,j,k:byte;
 begin
     for j:=1 to M do
     begin
         for i:=1 to N do
         begin
-            res:=0;
-            for k:=1 to 5 do
-            begin
-                if (vec[k].i=i) and (vec[k].j=j) then
-                     begin
-                        res := 1;
-                        pos := k;
-                    end;        
-            end;
-            if res=1 then
-                Write(vec[pos].valor,' ')    
+            k:=0;
+            while (k<=datos) and ((vec[k].i<>i) or (vec[k].j<>j)) do
+                k:=k+1;
+        
+            if k <> datos+1 then
+                Write(vec[k].valor,' ')    
             else
                 Write('0 ');  
         end;

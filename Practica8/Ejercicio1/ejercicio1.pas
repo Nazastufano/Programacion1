@@ -24,9 +24,8 @@ begin
     if n=0 then
         potencia:= 1
     else
-        begin
-            potencia:= X * potencia(X, n-1);
-        end;
+        potencia:= X * potencia(X, n-1);
+        
 end;
 
 //b)
@@ -38,11 +37,10 @@ begin
         if n>0 then
             potenciaNeg:= X * potenciaNeg(X, n-1)
         else
-            potenciaNeg:= 1/(X * 1/potenciaNeg(X, n+1));
+            potenciaNeg:= 1/X*potenciaNeg(X, n+1);
 end;
 
-
 begin
-    writeln(potencia(3,3));
-    writeln(potenciaNeg(3,-2):0:2);
+    WriteLn('El resultado de la potencia es: ', Potencia(2,3));
+    WriteLn('El resultado de la potencia es: ', PotenciaNeg(2,-3):0:4);
 end.
