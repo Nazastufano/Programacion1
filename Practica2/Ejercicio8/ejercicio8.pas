@@ -1,18 +1,16 @@
 program Ejercicio8;
 
-(* Ej 8) Un club cobra a sus socios una cuota básica por mes que
-incluye dos deportes, su costo depende de la edad del socio:
- Si es mayor de 18: $1800
- Si está entre 13 y 18: $1200
- Si tiene entre 5 y 12 años: $750
- En otro caso no paga 
-Además, se cobra $250 por cada deporte adicional que realiza, 
-excepto pileta escuela que cuesta $800. Si
+(*Ej 8 Un club cobra a sus socios una cuota básica por mes que incluye dos deportes, su costo depende de
+la edad del socio:
+    Si es mayor de 18: $1800
+    Si está entre 13 y 18: $1200
+    Si tiene entre 5 y 12 años: $750
+    En otro caso no paga 
+Además, se cobra $250 por cada deporte adicional que realiza, excepto pileta
+escuela que cuesta $800. Si
 la cuota se abona después del día 15 tiene un recargo del 5%.
-Determinar los datos a ingresar, para calcular e informar cuánto
-paga un socio.
+Determinar los datos a ingresar, para calcular e informar cuánto paga un socio.
 *)
-
 const
     recargo = 0.05;
 

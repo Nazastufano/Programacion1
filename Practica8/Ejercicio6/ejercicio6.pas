@@ -22,20 +22,20 @@ Const
 var
     val:real;
 
-function BuscarValor(vec:TV; val:real; indice:byte):real;
+function BuscarValor(vec:TV; val:real; indice:byte):byte;
 begin
     if indice<>0 then
-        begin
-            if (val = vec[indice]) then
-                BuscarValor := indice
-            else
-                BuscarValor := BuscarValor(vec,val,indice-1);
-        end;
+        if (val = vec[indice]) then
+            BuscarValor := indice
+        else
+            BuscarValor := BuscarValor(vec,val,indice-1)
+    else
+        BuscarValor:=0;
 end;
 
-function BusquedaBinariaRecursiva(vec:TV; inicio:byte; fin:byte; val: real): Integer;
+function BusquedaBinariaRecursiva(vec:TV; inicio:byte; fin:byte; val: real): byte;
 var
-    medio: Integer;
+    medio: byte;
 begin
     if inicio > fin then
         BusquedaBinariaRecursiva := 0  // Elemento no encontrado
@@ -44,10 +44,11 @@ begin
         medio := (inicio + fin) div 2;
         if vec[medio] = val then
             BusquedaBinariaRecursiva := medio  // Elemento encontrado en la posición 'medio'
-        else if vec[medio] > val then
-            BusquedaBinariaRecursiva := BusquedaBinariaRecursiva(vec, inicio, medio - 1, val)  // Buscar en la mitad izquierda
-        else
-            BusquedaBinariaRecursiva := BusquedaBinariaRecursiva(vec, medio + 1, fin, val);  // Buscar en la mitad derecha
+        else 
+            if vec[medio] > val then
+                BusquedaBinariaRecursiva := BusquedaBinariaRecursiva(vec, inicio, medio - 1, val)  // Buscar en la mitad izquierda
+            else
+                BusquedaBinariaRecursiva := BusquedaBinariaRecursiva(vec, medio + 1, fin, val);  // Buscar en la mitad derecha
     end;
 end;
 
@@ -55,6 +56,6 @@ begin
     writeln('Ingrese un valor a buscar: ');
     readln(val);
 
-    writeln('La posicion de X es: ', BuscarValor(a,val,N):0:0);
+    writeln('La posicion de X es: ', BuscarValor(a,val,N));
     writeln('La posicion de X es: ', BusquedaBinariaRecursiva(b,1,N,val));
 end.
