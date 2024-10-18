@@ -10,7 +10,8 @@ type
 
 procedure RellenarMatriz(var matr: TM);
 var
-    val,i,j:integer;
+    val:integer;
+    i,j:byte;
 begin
     for i := 1 to N do
     begin
@@ -28,14 +29,17 @@ begin
     if i=0 then
         DiagonalMayorSumaFila:=true
     else
-        begin
-            if (i<>j) then
-                suma := suma+matr[i,j];
-            if j>1 then    
-                DiagonalMayorSumaFila := DiagonalMayorSumaFila(matr,i,j-1,suma,matr[i,i])
-            else
-                DiagonalMayorSumaFila:= (suma<matr[i,i]) and DiagonalMayorSumaFila(matr,i-1,N,0,matr[i-1,i-1]);
-        end;
+        if (i=j) and (suma>matr[i,j]) then
+            DiagonalMayorSumaFila := false
+        else
+            begin
+                if (i<>j) then
+                    suma := suma+matr[i,j];
+                if j>1 then    
+                    DiagonalMayorSumaFila := DiagonalMayorSumaFila(matr,i,j-1,suma,matr[i,i])
+                else
+                    DiagonalMayorSumaFila:= (suma<matr[i,i]) and DiagonalMayorSumaFila(matr,i-1,N,0,matr[i-1,i-1]);
+            end;
 end;
 var
     matr:TM;

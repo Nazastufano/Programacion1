@@ -37,86 +37,32 @@ begin
         i:=i+1;
     end;
 end;
-{
 procedure MezclarArreglos(var vec:TVMuestra;vec1,vec2:TV;i,j,k:byte);
 begin
-    k:=k+1;
-    if (i=0) and (j=0) then
-        WriteLn('Hecho')
+    if ((i<=N) or (j<=N)) and (vec1[i]=vec2[j]) then
+        begin
+            vec[k]:=vec1[i];
+            MezclarArreglos(vec,vec1,vec2,i+1,j+1,k+1);  
+        end
     else
-        if vec1[i]=vec2[j] then
+        if ((vec1[i]<vec2[j]) or (j>N)) and (i<=N) then
             begin
-                MezclarArreglos(vec,vec1,vec2,i-1,j-1,k);
                 vec[k]:=vec1[i];
-            end
+                MezclarArreglos(vec,vec1,vec2,i+1,j,k+1);  
+            end        
         else
-            if (vec1[i]>vec2[j]) and ((i<>0)) then
-                begin
-                    MezclarArreglos(vec,vec1,vec2,i-1,j,k);
-                    vec[k]:=vec1[i];
-                end
-            else    
-                begin
-                    MezclarArreglos(vec,vec1,vec2,i,j-1,k);
-                    vec[k]:=vec2[j];
-                end;
-                
+            If ((vec1[i]>vec2[j]) Or (i>N)) And (j<=N) Then
+            begin
+                vec[k]:=vec2[j];
+                MezclarArreglos(vec,vec1,vec2,i,j+1,k+1);  
+            end;
 end;
-}
-{procedure MezclarArreglos2(var vec:TVMuestra;vec1,vec2:TV;i,j,k:byte);
-begin
-    if (i>0) and (j>0) then
-        if vec1[i]=vec2[j] then
-            MezclarArreglos2(vec,vec1,vec2,i-1,j-1,k-1)
-        else
-            if (vec1[i]>vec2[j]) then
-                MezclarArreglos2(vec,vec1,vec2,i-1,j,k-1)
-            else
-                MezclarArreglos2(vec,vec1,vec2,i,j-1,k-1);
-    
-    if true then
-        WriteLn('i: ',i,' j: ',j,' k: ',k,' vec1[i]: ', vec1[i],' vec2[j]: ', vec2[j]);
-    
-    if (vec1[i]>vec2[j]) and (j>0) then
-        vec[k]:=vec1[i]
-    else
-        vec[k]:=vec2[j];
-    
-end;}
 
-procedure MezclarArreglos2(var vec:TVMuestra;vec1,vec2:TV;i,j,k:byte);
-begin
-    k := k-1;
-    if (i>1) or (j>1) then
-        if vec1[i]=vec2[j] then
-            MezclarArreglos2(vec,vec1,vec2,i-1,j-1,k)
-        else
-            if (vec1[i]>vec2[j]) then
-                MezclarArreglos2(vec,vec1,vec2,i-1,j,k)
-            else
-                MezclarArreglos2(vec,vec1,vec2,i,j-1,k)
-    else
-        if (vec1[i]<vec2[j])  then
-            vec[k-1]:=vec1[i]
-        else
-            vec[k-1]:=vec2[j];
-    if true then
-        WriteLn('i: ',i,' j: ',j,' k: ',k,' vec1[i]: ', vec1[i],' vec2[j]: ', vec2[j]);
-    
-    if (vec1[i]>vec2[j])  then
-        vec[k]:=vec1[i]
-    else
-        vec[k]:=vec2[j];
-    
-end;
 var
     arreglo:TVMuestra;
 
 begin
     InicializarVec(arreglo);
-    //MezclarArreglos(arreglo,a,b,N,N,0);
-    //MostrarArreglo(arreglo);
-    MezclarArreglos2(arreglo,b,a,N,N,2*N);
+    MezclarArreglos(arreglo,b,a,1,1,1);
     MostrarArreglo(arreglo);
-
 end.

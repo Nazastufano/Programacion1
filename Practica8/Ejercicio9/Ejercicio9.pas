@@ -7,17 +7,33 @@ están dispuestos de forma creciente, esto es,
 Por ejemplo: para 2337, 356, 88 o 459 debería retornar verdadero
 No se permite el uso de cadenas ni de vectores. *)
 
-function AnlisisNumerico(num,ant:word):Boolean;
+{
+function AnalisisNumerico(num,ant:word):Boolean;
 begin
     ant:=num;
     num:= num div 10;
     
     if num = 0 then
-        AnlisisNumerico:= true
+        AnalisisNumerico:= true
     else
-        AnlisisNumerico:= (ant mod 10 >= num mod 10) and (AnlisisNumerico(num,ant));
+        AnalisisNumerico:= (ant mod 10 >= num mod 10) and (AnalisisNumerico(num,ant));
+end;
+}
+
+function AnalisisNumerico(num,ant:word):Boolean;
+begin
+    ant:=num;
+    num:= num div 10;
+    
+    if num = 0 then
+        AnalisisNumerico:= true
+    else
+        if (ant Mod 10 >= num Mod 10) then
+            AnalisisNumerico:= (AnalisisNumerico(num,ant))
+        else
+            AnalisisNumerico := false;
 end;
 
 begin
-    WriteLn(AnlisisNumerico(2337,0));
+    WriteLn(AnalisisNumerico(2337,0));
 end.

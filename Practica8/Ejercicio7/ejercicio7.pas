@@ -10,7 +10,8 @@ Type
 
 Procedure RellenarMatriz(Var matr: TM);
 Var 
-    val,i,j:   integer;
+    val:   integer;
+    i,j:byte
 Begin
     For i := 1 To N Do
     Begin
@@ -29,7 +30,7 @@ begin
         BuscarMin:=min
     else
         begin
-            if matr[i,j]<min then
+            if (matr[i,j]<min) or ((i=N) and (j=M)) then
                 min:=matr[i,j];
             if j>1 then
                 BuscarMin := BuscarMin(matr,i,j-1,min)
@@ -39,10 +40,9 @@ begin
 end;
 
 Var 
-    valorMinimo:   integer;
     matr:   TM;
 
 begin
     RellenarMatriz(matr);
-    WriteLn('El minimo es: ', BuscarMin(matr,N,M,matr[N,M]));
+    WriteLn('El minimo es: ', BuscarMin(matr,N,M,0));
 end.

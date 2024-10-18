@@ -9,9 +9,9 @@ type
     TV = array[1..N] of integer;
     TM = array[1..N,1..M] of integer;
 
-procedure MostrarArreglo(vec:TV); //Genera el arreglo de los maximos
+procedure MostrarArreglo(vec:TV); 
 var
-    i:integer;
+    i:byte;
 begin
     for i := 1 to N do
     begin
@@ -27,7 +27,8 @@ end;
 
 procedure RellenarMatriz(var matr: TM);
 var
-    val,i,j:integer;
+    val:integer;
+    i,j:byte;
 begin
     for i := 1 to N do
     begin
