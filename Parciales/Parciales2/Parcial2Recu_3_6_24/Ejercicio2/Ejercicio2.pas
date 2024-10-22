@@ -1,4 +1,4 @@
-program Parcial2Recu_3_6_24;
+program Ejercicio2;
 
 
 (*Dada una matriz de NxN enteros positivos, calcular la cantidad de columnas que tienen algún elemento

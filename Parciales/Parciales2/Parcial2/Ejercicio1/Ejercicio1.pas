@@ -1,9 +1,9 @@
-Program ParcialEj1;
+Program Ejercicio1;
 
 type
     ST10 = string[10];
     TRcerales = record
-        tipoDeCeral: ST10
+        tipoDeCeral: ST10;
         precio:word; //por tonelada en dolares
     end;
 
@@ -13,7 +13,7 @@ type
         toneladas:word;
     end;
 
-    TVRE: array[1..N];
+    TVReg = array[1..N] of TRExportaciones;
 
 var
     
