@@ -103,9 +103,9 @@ begin
     end;
     Close(arch);
 end;
-procedure GenerarRegistroFam(var vecFam:TVRegFam;matr:TM;N:byte);
+procedure GenerarRegistroFam(var vecFam:TVRegFam;matr:TM;N:byte;var K:byte);
 var
-    i,j,k:byte;
+    i,j:byte;
 begin
     k:=0;
     for i:=1 to N do
@@ -221,18 +221,46 @@ end;
        porcentaje de registros de tipo FAMILIAR.
        - Contar registros de tipo FAMILIAR para un año determinado (para el inciso c) }
 
-function
+function ContarFamiliar(vec:TVRegFam;i:byte;anio:word):byte;
+var
+    cont:byte;
+begin
+    if vec[i].anio=anio then
+        cont:=1
+    else
+        cont:=0;
+
+    if i=1 then
+        ContarFamiliar:=cont
+    else
+        ContarFamiliar := cont + ContarFamiliar(vec,i-1,anio);
+end;
+
+procedure PorcRegFamPorAnio(vecFam:TVRegFam;K:byte);
+var
+    anio:word;
+    cont:byte;
+begin
+    WriteLn('Ingrese un anio para buscar el porcentaje de registros familiares');
+    ReadLn(anio);
+    cont:=ContarFamiliar(vecFam,K,anio);
+    if cont<>0 then
+        WriteLn('El porcentaje de registros para ese anio es: ', (cont*100/K):0:2,'%')
+    else
+        WriteLn('No existen registros para ese anio');
+end;
 
 var
     matr:TM;
     vecEscal:TVRegEsc;
     vecFam:TVRegFam;
     vecAP:TVRegAP;
-    N:byte;
+    N,K:byte;
 begin
     LecturaT(matr,N);
     LecturaE(vecEscal);
-    GenerarRegistroFam(vecFam,matr,N);
+    GenerarRegistroFam(vecFam,matr,N,K);
     GenerarArregloSuperanEscala(vecAP,matr,vecEscal,N);
     MenorAsistenciaProm(matr,N);
+    PorcRegFamPorAnio(vecFam,K);
 end.

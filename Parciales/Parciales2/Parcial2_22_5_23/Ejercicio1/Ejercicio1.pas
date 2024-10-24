@@ -10,7 +10,7 @@ MatHoras contiene la cantidad total de horas acumuladas por todos los vehículos
 lugar.
 
 Ejemplo de lote de datos
- N = 5 M = 3
+    N = 5 M = 3
 
             MatAutos
         4       5       15
