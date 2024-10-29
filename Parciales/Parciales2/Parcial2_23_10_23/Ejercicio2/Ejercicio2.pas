@@ -1,8 +1,8 @@
 Program Ejercicio2;
 
-(*Ej2)Dada una matriz de números naturales Mat de N filas y M columnas, y un vector de números naturales Vec de
-N elementos, informar cuantas filas de Mat cumplen que todos sus elementos son múltiplo del elemento correspondiente en el 
-vector Vec. Este ejercicio debe ser resuelto totalmente en forma recrusiva.*)
+(*Ej2)Dada una matriz de números naturales Mat de N filas y M columnas, y un vector de números naturales
+Vec de N elementos, informar cuantas filas de Mat cumplen que todos sus elementos son múltiplo del elemento
+correspondiente en el vector Vec. Este ejercicio debe ser resuelto totalmente en forma recrusiva.*)
 
 const
     M = 3;

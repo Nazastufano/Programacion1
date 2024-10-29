@@ -36,7 +36,6 @@ var
     i:integer;
 begin
     write('(');
-
     for i := 1 to N do
     begin
         if (i<>N) then
@@ -80,5 +79,5 @@ begin
     RellenarMatriz(mat);
     pos.i:=N;
     pos.J:=M;
-    posMinimos(V,mat,N,M,0,pos,mat[N,M],0);
+    posMinimos(V,mat,N,M,0,pos,0,0);
 end.
