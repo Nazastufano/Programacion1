@@ -1,4 +1,4 @@
-program Parcial1ParteB19_4_24;
+program Parcial;
 
 {Ejercicio 1
 Se tiene un conjunto de productores que cada uno informa acerca de las parcelas que posee y

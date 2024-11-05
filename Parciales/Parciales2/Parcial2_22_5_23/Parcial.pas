@@ -1,4 +1,4 @@
-Program Ejercicio1;
+Program Parcial;
 
 (*Un estacionamiento está compuesto por N niveles, cada uno de los cuales cuenta con M plazas. A lo
 largo del día, se utiliza un dispositivo para registrar la cantidad de vehículos que ocupan cada plaza

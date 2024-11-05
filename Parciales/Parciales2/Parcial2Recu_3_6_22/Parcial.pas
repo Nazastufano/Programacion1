@@ -1,4 +1,4 @@
-Program Parcial2Recu;
+Program Parcial;
 
 (*Un Municipio de una localidad turística registra el ingreso de turistas de manera resumida para los últimos N 
 años, y para cada año por trimestre. La cantidad de turistas está compuesta por dos valores: cantidad de turistas 

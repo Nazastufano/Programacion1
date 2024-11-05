@@ -1,4 +1,4 @@
-program Ejercicio1;
+program Parcial;
 
 (*Una competencia de lanzamiento de jabalina se registra en un archivo de texto que contiene duplas con: el código
 del competidor (cadena de 3 caracteres) y la distancia de su lanzamiento (real). No se conoce la cantidad de

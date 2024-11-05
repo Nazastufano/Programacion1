@@ -1,12 +1,10 @@
 program Ejercicio2;
 
-
 (*Dada una matriz de NxN enteros positivos, calcular la cantidad de columnas que tienen algún elemento
 mayor al promedio de todas las celdas del triángulo superior de la matriz.
 Resolver completamente de forma recursiva, utilizando uno o más subprogramas. No s epermite el uso de ciclos.
 Escribir los tipos, variables e invocaciones correspondientes a la inicialización, carga y uso de la matriz
 para obtener y mostrar los resultados pedidos. No implemetnar la carga de la matriz*)
-
 
 const
     N=3;

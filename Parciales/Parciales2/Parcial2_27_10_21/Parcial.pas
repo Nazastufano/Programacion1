@@ -1,4 +1,4 @@
-Program Ejercicio1;
+Program Parcial;
 
 (*Un edificio de departamentos de N pisos registra información respecto a los ocupantes de cada 
 departamento(son 6 departamentos por piso). Esta información se encuentra en un archivo de texto 
@@ -239,7 +239,7 @@ begin
         if i<>K then
             Write('(',VRegAP[i].apellido,', ',VRegAP[i].piso,'),')
         else  
-            Write('(',VRegAP[i].apellido,', ',VRegAP[i].piso,')]');
+            Writeln('(',VRegAP[i].apellido,', ',VRegAP[i].piso,')]');
     end;
 end;
 procedure GenerarArreglo(matr:TM;N:byte);

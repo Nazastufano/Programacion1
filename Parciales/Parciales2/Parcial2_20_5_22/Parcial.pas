@@ -1,4 +1,4 @@
-Program Parcial2;
+Program Parcial;
 
 {Una Universidad registra los datos de los inscriptos a una carrera a distancia en un archivo de texto 
 INSCRIPTOS.TXT, un inscripto por línea y ordenado por orden de inscripción. Cada línea contiene los siguientes 

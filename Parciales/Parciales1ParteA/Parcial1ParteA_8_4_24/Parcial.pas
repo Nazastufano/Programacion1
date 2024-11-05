@@ -1,11 +1,11 @@
-program Parcial1ParteA;
+program Parcial;
 
 {En una partida de dados intervienen una cantidad desconocida de jugadores, todos realizan N tiros con 2 dados.
 Dicha inforamción se agrupa: en la primera linea viene N y luego
     Nombre (Cadena de 10, 'XXX' es fin de datos)
     y a continuación, en distintas lineas, los N pares de números (entre 1 y 6)
 
-Se pide ingresar la infrmación desde el archivo Juego.TXT para:
+Se pide ingresar la información desde el archivo Juego.TXT para:
     a) de cada jugador informar el puntaje obtenido (*), y por fin de proceso: 
     b) Teniendo en cuenta solo aquellos jugadores que obtuvieron puntaje total menor a X (dato ingresado por teclado) informar
 el porcentaje de los jugadores que en alguna tirada sacaron el 6 en uno ó ambos dados.
