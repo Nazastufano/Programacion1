@@ -93,9 +93,9 @@ begin
             vecZonaPA[cantMultas]:=zona;
             pos:=Busqueda(vecZonas,zona,cantZonas);
             case tipoVehiculo of
-                1:vecMulta[cantMultas]:=1000*(1+vecCoef[pos]);
-                2:vecMulta[cantMultas]:=2000*(1+vecCoef[pos]);
-                3:vecMulta[cantMultas]:=5000*(1+vecCoef[pos]);
+                1:vecMulta[cantMultas]:=1000*vecCoef[pos];
+                2:vecMulta[cantMultas]:=2000*vecCoef[pos];
+                3:vecMulta[cantMultas]:=5000*vecCoef[pos];
             end;
         end
         else
@@ -125,7 +125,7 @@ begin
     for i:=1 to cantMultas do
     begin
         pos:=Busqueda(vecZonas,vecZonaPA[i],cantZonas);
-        if vecMaxVel[pos]<vecVelocidad[i] then
+        if vecMaxVel[pos]<=vecVelocidad[i] then
         begin
             vecMaxVel[pos]:=vecVelocidad[i];
             vecPatMaxVel[pos]:=vecPatente[i];
