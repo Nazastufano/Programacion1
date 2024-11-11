@@ -17,10 +17,10 @@ texto ZONAS.TXT:
     ● Zona (AN3) 
     ● Coeficiente para multiplicar tasa fija  
 Luego resuelva: 
-    a) Promedio de velocidad de las lecturas del radar que no corresponden a infracciones. 
-    b) Patente correspondiente a la máxima velocidad de las infracciones cometidas en cada zona (si se repite la
-       velocidad máxima, tomar la última). 
-    c) Importe total de multas de una zona ingresada por teclado (puede no existir). 
+    a) Cantidad de lecturas del radar que no corresponden a infracciones. 
+    b) Patente de la multa de valor máximo cometida en cada zona (si se repite la multa máxima, tomar la 
+       primera). 
+    c) Cantidad de infracciones de una zona ingresada por teclado (puede no existir). 
 Importante: Debe implementar funciones o procedimientos en los procesos que corresponda. }
 const
     MAX = 20;
@@ -108,49 +108,46 @@ begin
 end;
 procedure PromVelSinMulta(velYCant:TVAcum);
 begin
-    if velYCant[2]<>0 then
-        WriteLn('El promedio de las velocidades de los autos sin multa es: ', velYCant[1]/velYCant[2]:0:2)
-    else
-        WriteLn('No hay autos sin multa');
+    WriteLn('La cantidad de lecturas del radar que no corresponden a una infraccion son: ', velYCant[2]);   
 end;
-procedure maxVelPorZona(vecPatente:TVPatente;vecZonaPA,vecZonas:TVZona;vecVelocidad:TVVelocidad;cantMultas,cantZonas:byte);
+procedure maxVelPorZona(vecPatente:TVPatente;vecZonaPA,vecZonas:TVZona;vecMulta:TVReal;cantMultas,cantZonas:byte);
 var
-    vecMaxVel:TVVelocidad;
-    vecPatMaxVel:TVPatente;
+    vecMaxMul:TVReal;
+    vecPatMaxMul:TVPatente;
     i,pos:byte;
 begin
     for i:=1 to cantZonas do
-        vecMaxVel[i]:=0;
+        vecMaxMul[i]:=0;
     
     for i:=1 to cantMultas do
     begin
         pos:=Busqueda(vecZonas,vecZonaPA[i],cantZonas);
-        if vecMaxVel[pos]<=vecVelocidad[i] then
+        if vecMaxMul[pos]<vecMulta[i] then
         begin
-            vecMaxVel[pos]:=vecVelocidad[i];
-            vecPatMaxVel[pos]:=vecPatente[i];
+            vecMaxMul[pos]:=vecMulta[i];
+            vecPatMaxMul[pos]:=vecPatente[i];
         end;
     end;
     for i:=1 to cantZonas do
-        if vecMaxVel[i]<>0 then
-            WriteLn('La patente con la velocidad maxima de la zona ', vecZonas[i], ' es ', vecPatMaxVel[i]);
+        if vecMaxMul[i]<>0 then
+            WriteLn('La patente con la velocidad maxima de la zona ', vecZonas[i], ' es ', vecPatMaxMul[i]);
 end;
 
-procedure importeDeZona(vecMulta:TVReal;vecZonas,vecZonaPA:TVZona;zona:ST3;cantMultas,cantZonas:byte);
+procedure infraccionPorZona(vecMulta:TVReal;vecZonas,vecZonaPA:TVZona;zona:ST3;cantMultas,cantZonas:byte);
 var
-    pos,i:byte;
-    importeTotal:real;
+    infracciones,pos,i:byte;
+    
 begin
-    importeTotal := 0;
+    infracciones := 0;
     pos := Busqueda(vecZonas,zona,cantZonas);
     if pos<>0 then
         begin
             for i:=1 to cantMultas do
             begin
                 if (zona=vecZonaPA[i]) then
-                    importeTotal:=importeTotal+vecMulta[i];
+                    infracciones:=infracciones+1;
             end;
-            WriteLn('El importe de la zona ', zona, ', ingresada por teclado, es ', importeTotal:0:2);
+            WriteLn('La cantidad de multas en la zona ', zona, ', ingresada por teclado, es ', infracciones);
         end
     else
         WriteLn('La zona ingresada no existe');
@@ -168,10 +165,10 @@ begin
     LecturaArchZona(vecZonas,vecCoef,cantZonas);
     LecturaArchRadar(vecPatente,vecVelocidad,vecMulta,vecZonaPA,velYCant,vecCoef,vecZonas,cantMultas,cantZonas);
     PromVelSinMulta(velYCant);
-    maxVelPorZona(vecPatente,vecZonaPA,vecZonas,vecVelocidad,cantMultas,cantZonas);
+    maxVelPorZona(vecPatente,vecZonaPA,vecZonas,vecMulta,cantMultas,cantZonas);
     
     WriteLn('Ingrese una zona');
     ReadLn(zona);
     zona:=upCase(zona);
-    importeDeZona(vecMulta,vecZonas,vecZonaPA,zona,cantMultas,cantZonas);
+    infraccionPorZona(vecMulta,vecZonas,vecZonaPA,zona,cantMultas,cantZonas);
 end.
