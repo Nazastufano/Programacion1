@@ -1,0 +1,15 @@
+2 CasaDeJuanPerez
+1 Casa           
+3 Rodrigo        
+4 departamento   
+10 Camilo         
+6 Rodriguez      
+9 James          
+17 Luro           
+25 Avellaneda     
+12 La Boca        
+11 Taller         
+13 Independencia  
+26 Nicaragua      
+7 Andorra        
+15 Dubai          

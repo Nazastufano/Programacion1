@@ -1,0 +1,15 @@
+001 Paseo Sierras   1000 500
+002 Laguna Azul     1200 600
+003 City Tour       800 300
+004 Viaje en Barco  1500 700
+005 Caminata Bosque 900 400
+006 Museo Historico 700 250
+007 Safari Urbano   1100 550
+008 Ruta del Vino   2000 800
+009 Aventura Noctur 1300 600
+010 Tour Gastronomi 1800 1000
+011 Parque Nacional 1600 700
+012 Excursion Globo 1800 900
+013 RaftingAventura 1700 750
+014 SenderismoVerde 850 300
+015 ObservacionAves 1200 500
