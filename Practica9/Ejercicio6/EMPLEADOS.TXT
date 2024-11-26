@@ -1,0 +1,16 @@
+1001 Juan Perez      57 12345 7800
+1002 Ana Lopez       64 12346 8900
+1003 Carlos Gomez    45 12347 6700
+1004 Laura Fernandez 73 12348 9200
+1005 Pedro Martinez  38 12349 5600
+1006 Sofia Garcia    81 12350 9800
+1007 Diego Ramirez   54 12351 7400
+1008 Maria Torres    67 12352 8500
+1009 Jose Rodriguez  29 12353 4500
+1010 Lucia Morales   61 12354 8000
+1011 Andres Sanchez  49 12355 6900
+1012 Marta Vargas    52 12356 7200
+1013 Rafael Silva    77 12357 9100
+1014 Beatriz Herrera 40 12358 6000
+1015 Felipe Cruz     36 12359 5200
+9999 0               0 0 0
