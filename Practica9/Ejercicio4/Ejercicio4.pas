@@ -48,8 +48,9 @@ var
     R:TReg;
     artActual:ST4;
     talleActual:char;
-    cantPrendas,cantColorNegro,totalNegras,totalPrendas,colorActual:byte;
-    montoTotal:real;
+    cantPrendas:byte;
+    totalPrendas:word;
+    montoTotal,totalNegras:real;
 begin
     Reset(archStock);
     WriteLn('                        Stock de Prendas');
@@ -65,24 +66,23 @@ begin
             WriteLn('Talle               Cantidad                Precio Costo');
             montoTotal:=0;
             cantPrendas:=0;
-            totalNegras:=0;
             talleActual:=R.talle;
             while (artActual = R.codArt) and (talleActual=R.talle) do
             begin
-                colorActual:=R.color;
-                cantPrendas:=0;
-                while (artActual = R.codArt) and (talleActual=R.talle) and (colorActual=R.color) do
+                while (artActual = R.codArt) and (talleActual=R.talle) do
                 begin
                     cantPrendas:=cantPrendas+R.cantPrendas;
                     if R.color=1 then
-                        totalNegras:=totalNegras+1;
+                        totalNegras:=totalNegras+R.cantPrendas;
                     montoTotal:=montoTotal+R.precio;
-                    Read(archStock,R);
+                    Read(archStock,R);    
                 end;
+                
             end;
+            totalPrendas := totalPrendas+cantPrendas;
             WriteLn(talleActual, cantPrendas:24, '$':20,montoTotal:0:2)
         end;
-        totalPrendas:=totalPrendas+cantPrendas;
+        
     end;
     WriteLn('Cantidad total: ', totalPrendas);
     WriteLn('El porcentaje de prendas negras es: ',totalNegras*100/totalPrendas:0:2,'%');

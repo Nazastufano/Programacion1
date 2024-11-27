@@ -1,0 +1,11 @@
+usuario010      pass1234  
+usuario020      1234abcd  
+usuario030      clave5678 
+usuario040      xyz78910  
+usuario050      qwerty123 
+usuario060      abcdef12  
+usuario070      secure987 
+usuario080      mypass2023
+usuario090      zyx4321   
+usuario100      contrase55
+ZZZZZZZZZZZZZZZ ZZZZZZZZZZ
