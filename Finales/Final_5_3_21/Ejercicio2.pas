@@ -1,4 +1,4 @@
-program Final;
+program Ejercicio2;
 
 (*Se cuenta con un archivo con los datos de las mudanzas realizadas por distintas empresas de transporte y 
 otro archivo con los nombres de las provincias argentinas, de la siguiente manera: 
@@ -102,14 +102,16 @@ var
 begin
     Reset(archMudanzas);
     read(archMudanzas,RMu);
-    mayorMontoTotal:=0;
     mayorCantidadPaquetes:=0;
     InicializarVec(vecCont);
+  
     while (not eof(archMudanzas)) do
     begin
         empresaActual:=RMu.empresa;
         Writeln('Empresa ', empresaActual);
-        acumPaquetes:=0;
+        mayorMontoTotal := 0;
+        acumPaquetes := 0;
+        acumPeso:=0;
         while empresaActual = RMu.empresa do
         begin
             Writeln('Provincia  Total de Paquetes    Peso Total Monto Total');
@@ -117,6 +119,7 @@ begin
             pesoTotal := 0;
             montoTotal :=0;
             totalPaquetes:=0;
+            
             while (provActual=RMu.cod) and (empresaActual = RMu.empresa) do
             begin
                 pesoTotal:=pesoTotal+RMu.pesoEnvio;
@@ -130,7 +133,7 @@ begin
                 provMayorMonto:=provActual;
                 mayorMontoTotal:=montoTotal;
             end;                
-            
+            acumPeso:=acumPeso+pesoTotal;
             acumPaquetes:=acumPaquetes+totalPaquetes;
             WriteLn(vecProvincias[provActual].nombre, ' ', totalPaquetes, ' ', pesoTotal:0:2, ' ', montoTotal:0:2);
         end;
@@ -139,7 +142,7 @@ begin
             mayorCantidadPaquetes:=acumPaquetes;
             empresaMasPaquetes:=empresaActual;
         end;
-        WriteLn('Peso promedio por paquete: ', pesoTotal/totalPaquetes:0:2);
+        WriteLn('Peso promedio por paquete: ', acumPeso/acumPaquetes:0:2);
         WriteLn('Provincia destino con mayor monto total ', vecProvincias[provMayorMonto].nombre);
     end;
     Close(archMudanzas);

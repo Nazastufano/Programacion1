@@ -1,4 +1,4 @@
-Program Final;
+Program Ejercicio1;
 
 (*En las últimas elecciones se almacenó en dos archivos VOTOS_ACUM.DAT y
 VOTOS_PARCIAL.DAT la sigueinte información (ambos archivos tienen centinela):

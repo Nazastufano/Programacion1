@@ -1,4 +1,4 @@
-Program Final;
+Program Ejercicio1;
 
 (*Una empresa Petrolera tiene un archivo EMPLEADOS.dat y otro HORAS-TRABAJO.dat con el registro de
 horas trabajadas por cada empleado en el mes anterior.
