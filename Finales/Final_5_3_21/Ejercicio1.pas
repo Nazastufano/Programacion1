@@ -15,9 +15,9 @@ function AnalisisVec(vec:TV;i,N:byte):Boolean;
 begin
     if i>0 then
         if ((i>N div 2) and (vec[i]>0)) or ((i<=N Div 2) and (vec[i]<0)) then
-                AnalisisVec:=AnalisisVec(vec,i-1,N)
-            else
-                AnalisisVec:=false
+            AnalisisVec:=AnalisisVec(vec,i-1,N)
+        else
+            AnalisisVec:=false
     else
         AnalisisVec:=true;
 end;

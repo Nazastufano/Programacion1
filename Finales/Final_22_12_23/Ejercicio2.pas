@@ -15,21 +15,19 @@ inicializaciones que se consideren necesarias.*)
 const
     max = 20;
 type
-  TM = array[1..max, 1..max] of Real;
+    TM = array[1..4, 1..4] of Real;
 
-function AnalisisRecursiva(mat:TM;N,i,j:byte;suma:real):Boolean;
+
+function AnalisisRecursiva(mat:TM;N,i,j:byte):Boolean;
 begin
-    if j<i then
-        suma:=suma+mat[i,j];
-
     if i>1 then
-        if j>1 then
-            AnalisisRecursiva:= AnalisisRecursiva(mat,N,i,j-1,suma)
-        else
-            if suma>mat[i,i] then
-                AnalisisRecursiva := AnalisisRecursiva(mat,N,i-1,N,0)
+        if (j<i) and (mat[i,i] >= mat[i,j]) then
+            AnalisisRecursiva := false
+        else 
+            If (j>1)  Then
+                AnalisisRecursiva := AnalisisRecursiva(mat,N,i,j-1)    
             else
-                AnalisisRecursiva := false
+                AnalisisRecursiva := AnalisisRecursiva(mat,N,i-1,N)
     else
         AnalisisRecursiva:=true;
 end;
@@ -40,7 +38,7 @@ var
 begin
     InicializarMatriz(A,N);
     
-    if AnalisisRecursiva(A,N,N,N,0) then
+    if AnalisisRecursiva(A,N,N,N) then
         WriteLn('Cumple')
     else
         WriteLn('No cumple');

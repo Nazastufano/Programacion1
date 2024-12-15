@@ -10,8 +10,6 @@ pueden hacer otras acciones como tener parametros variables, o escribir mediante
 Acciones las cuales la funcion no puede ejectuar.
 *)
 
-
-
 begin
   
 end.

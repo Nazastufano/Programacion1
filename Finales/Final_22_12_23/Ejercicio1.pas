@@ -62,22 +62,11 @@ begin
     Close(archDistr);
 end;
 
-function Busqueda(vecDistritos:TVDistritos;cod:word):byte;
-var
-    i:byte;
-begin
-    i:=1;
-    while vecDistritos[i].nroDistrito<>cod do
-        i:=i+1;
-    Busqueda:=i;
-end;
-
 procedure InformarGanador(vecDistritos:TVDistritos;RVA:TRegVA);
 var
     i,partidoGanador:byte;
     maxVotos:word;
 begin
-    i:=Busqueda(vecDistritos,RVA.nroDistrito);
     maxVotos:=0;
     for i:=1 to 5 do
         if maxVotos<RVA.partidos[i] then
@@ -87,6 +76,16 @@ begin
         end;
     WriteLn('Nombre distrito: ', vecDistritos[i].nombre,' Partido ganador: ', partidoGanador);
 end;
+
+procedure InicializarRAux(var RAux:TRegVA);
+var
+    i:Byte;
+begin
+    for i:=1 to 5 do
+        RAux.partidos[i]:=0;
+end;
+
+
 procedure ActualizarVotos(var archVAcum:TArchVAcum;var archVPar:TArchVPar; vecDistritos:TVDistritos;nom:ST15);
 var
     RVA,RAux:TRegVA;
@@ -117,13 +116,20 @@ begin
         else if RVA.nroDistrito>RVP.nroDistrito then
         begin
             RAux.nroDistrito:=RVP.nroDistrito;
-            RAux.partidos[RVP.nroPartido]:=RVP.cantVotos;
+            InicializarRAux(RAux);
+            while RAux.nroDistrito = RVP.nroDistrito do
+            begin
+                RAux.partidos[RVP.nroPartido] := RAux.partidos[RVP.nroPartido] + RVP.cantVotos;
+                read(archVPar,RVP);
+            end;
+            InformarGanador(vecDistritos,RAux);
             Write(ArchTemp,RVAux);
-            read(archVPar,RVP);
         end
             else
-                Write(ArchTemp,RVA);
-        
+                begin
+                    Write(ArchTemp,RVA);
+                    Read(archVAcum,RVA);
+                end;        
     end;
     Write(ArchTemp,RVA);
     Close(ArchTemp);
@@ -131,6 +137,30 @@ begin
     Close(archVPar);
     Erase(archVAcum);
     Rename(ArchTemp,nom);
+end;
+procedure ArmarLista(var archVAcum:TArchVAcum;x:word);
+var
+    acumVotos:word;
+    RVA:TRegVA;
+    i:byte;
+    vecAcum: TVPartidos;
+begin
+    reset(archVAcum);
+    Read(archVAcum,RVA);
+    WriteLn('TOTALES GENEREALES POR PARTIDO');
+    WriteLn('PARTIDO         TOTALES');
+    while not Eof(archVAcum) do
+    begin
+        acumVotos:=0;
+        for i:=1 to 5 do
+            acumVotos:=acumVotos+RVa.partidos[i];
+        if acumVotos>x then
+            for i:=1 to 5 do
+                vecAcum[i] := vecAcum[i] + RVA.partidos[i];
+        read(archVAcum,RVA);
+    end;
+    for i:=1 to 5 do
+        WriteLn(i, ' ', vecAcum[i]);
 end;
 var
     vecDistritos:TVDistritos;
@@ -146,6 +176,6 @@ begin
 
     WriteLn('Ingrese un X a superar');
     ReadLn(x);
-
+    ActualizarVotos(archVAcum,archVPar,vecDistritos,'VOTOS_ACUM.DAT');
 
 end.
