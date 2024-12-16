@@ -74,7 +74,7 @@ var
     i:byte;
 begin
     i:=1;
-    while (i<=150) and (vecST3[i]<>cod) do
+    while (i<150) and (vecST3[i]<>cod) do
         i:=i+1;
     Busqueda:=i;
 end;

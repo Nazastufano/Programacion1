@@ -68,7 +68,7 @@ var
     i:byte;
 begin
     i:=1;
-    while vec[i].cod<>cod do
+    while (i<10) and (vec[i].cod<>cod) do
         i:=i+1;
     Busqueda:=i;
 end;
