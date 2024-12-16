@@ -80,7 +80,7 @@ Type
     TMAT =   array [1..20, 1..20] Of integer;
     TVEC =   array [1..20] Of byte;
 
-procedure ArmarMatriz(var MAT:TM; N,M:byte);
+procedure ArmarMatriz(var MAT:TMAT; N,M:byte);
 var
     i,j:byte;
 begin
@@ -95,13 +95,11 @@ var
 begin
     writeln('El vector generado es: ');
     For i :=1 To k Do
-        write(V[i]);
+        write(V[i],' ');
 end;
 
 
-procedure calcFilas(MAT:TM;var V:TVEC;N,M,i,j:byte; var K:byte);
-var
-    val:byte;
+procedure calcFilas(MAT:TMAT; var V:TVEC; N,M,i,j:byte; var K:byte);
 begin
     if i<N+1 then
     begin
@@ -112,20 +110,20 @@ begin
         end;
         
         if (j<M) and (MAT[i,j] <> MAT[i,M]) then
-            calcFilas := calcFilas(MAT,V,N,M,i,j+1,k)
+            calcFilas(MAT, V, N, M, i, j+1, k)
         else
-            calcFilas := calcFilas(MAT,V,N,M,i+1,1,k);
+            calcFilas(MAT, V, N, M, i+1, 1, k);
     end;
 end;
 var
-    MAT:TM;
-    V:TV;
+    MAT:TMAT;
+    V:TVEC;
     N,M,K:byte;
 begin
     write('ingrese N y M: ');
     readln(N,M);
     ArmarMatriz(MAT,N,M);
     k:=0;
-    calcFilas(MAT,V,N,M,N,N,K);
+    calcFilas(MAT, V, N, M, 1, 1, K);
     MostrarVector(V,K);
 end.
