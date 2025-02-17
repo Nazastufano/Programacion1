@@ -7,7 +7,7 @@ program Ejercicio2;
 
 Program Totalizador;
 type
-    TMAT = array [1..20, 1..20]
+    TMAT = array [1..20, 1..20] of integer;
     TVEC = array [1..20] of ....;
 var
     Mat:TMAT;
