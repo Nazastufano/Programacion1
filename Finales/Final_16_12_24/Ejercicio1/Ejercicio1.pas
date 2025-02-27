@@ -63,30 +63,31 @@ begin
         if REd.nroEdificio = ROc.nroEdificio then
         begin
             recaudadoEdi:=0;
+            
+            If (REd.nroEdificio = x) Or (REd.nroEdificio = y) Then
+            begin
+                WriteLn('Numero Edificio: ', REd.nroEdificio,'          Direccion Edificio:', REd.direccion);
+                WriteLn('Departamento           Valor Deuda Octubre');
+                res := 'S';
+            end;
+            
             while REd.nroEdificio = ROc.nroEdificio do
             begin
-                nroDeptoActual:=ROc.nroDepto;
-                If (Red.nroEdificio = x) Or (REd.nroEdificio = y) Then
-                begin
-                    WriteLn('Numero Edificio: ', REd.nroEdificio,'          Direccion Edificio:', REd.direccion);
-                    WriteLn('Departamento           Valor Deuda Octubre');
-                    res := 'S';
-                end;
-          
+                nroDeptoActual := ROc.nroDepto;
                 if nroDeptoActual in [1..50] then
-                begin                       
+                begin
                     recaudado:=0;
                     deuda:=0;
                     while (REd.nroEdificio = ROc.nroEdificio) and (nroDeptoActual = ROc.nroDepto) do
                     begin                
-                        if Roc.tipo = 'P' then
+                        if ROc.tipo = 'P' then
                             recaudado:=recaudado+Roc.valor
                         else
                             deuda:=deuda+Roc.valor;
                         read(archOct,ROc);
                     end;
                     
-                    if deuda-recadado>0 then
+                    if (deuda-recadado>0) and ((REd.nroEdificio = x) Or (REd.nroEdificio = y)) then
                     begin
                         res:= 'N';
                         WriteLn(' ',nroDeptoActual,'            $',deuda-recaudado);
@@ -96,11 +97,11 @@ begin
                 end
                 else
                     while (REd.nroEdificio = ROc.nroEdificio) and (nroDeptoActual = ROc.nroDepto) do
-                        Read(archOct,ROc);        
+                        Read(archOct, ROc);
             end;            
             
             if (Red.nroEdificio = x) Or (REd.nroEdificio = y) then
-                WriteLn('Todos los deptos. pagaron el total de sus expnesas en octubre: ', res);     
+                WriteLn('Todos los deptos. pagaron el total de sus expensas en octubre: ', res);
             
             REd.fondosReserva := recaudadoEdi-REd.gastosOctubre;
             Read(archEdi,REd);
